@@ -15,6 +15,6 @@ Reto de Angular - NodeJS - SQL Server
 * **Jorge Chagüi**
 * **Angie Quintana**
 * **Arturo Castillo**
-* **Carlos Martinez**
+* **Anderson Patiño**
 * **Iván Salazar**
 
