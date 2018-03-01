@@ -11,7 +11,9 @@
     "debug": "~2.6.9",
     "express": "~4.15.5",
     "morgan": "~1.9.0",
-    "serve-favicon": "~2.4.5"
+    "sequelize": "^4.35.0",
+    "serve-favicon": "~2.4.5",
+    "tedious": "^2.3.1"
   },
   "devDependencies": {
     "nodemon": "^1.15.1"
