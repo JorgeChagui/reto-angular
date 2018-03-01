@@ -1,27 +1,40 @@
 var express = require('express');
 var router = express.Router();
 var sequelize = require('../ssql');
-var User = require('../models/user');
+
+//Model
+const User = sequelize.import("usuario", require('../models/user'));
 
 
-/* GET users listing. */
-router.get('/', function (req, res, next) {
+console.log("Users controlador");
+
+router.post('/', function (req, res, next) {
+  
   sequelize.sync()
     .then(() => User.create({
-      username: 'janedoe',
-      birthday: new Date(1980, 6, 20)
+      cedula: req.body.cedula,
+      nombre: req.body.nombre,
+      primerApellido: req.body.primerApellido,
+      segundoApellido: req.body.segundoApellido,
+      fechaNacimiento: new Date(Date.parse(req.body.fechaNacimiento))
     }))
-    .then(jane => {
-      console.log(jane.toJSON());
+    .then(user => {
+      console.log(user.toJSON());
+      res.send("Usuario creado: ");
     });
-  res.send({ hola: "no", chao: "si" });
 });
 
-router.get("/all", function(req, res, next){
+router.get("/", function (req, res, next) {
   sequelize.sync()
     .then(() => User.findAll())
     .then(result => {
-      console.log(result);
+      res.send(result);
+    });
+});
+router.post("/:id", function (req, res, next) {
+  sequelize.sync()
+    .then(() => User.findById(req.params.id))
+    .then(result => {
       res.send(result);
     });
 });
