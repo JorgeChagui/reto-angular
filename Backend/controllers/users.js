@@ -1,6 +1,7 @@
 var express = require('express');
 var router = express.Router();
 var sequelize = require('../ssql');
+var moment = require('moment');
 
 //Model
 const User = sequelize.import("usuario", require('../models/user'));
@@ -16,11 +17,15 @@ router.post('/', function (req, res, next) {
       nombre: req.body.nombre,
       primerApellido: req.body.primerApellido,
       segundoApellido: req.body.segundoApellido,
-      fechaNacimiento: new Date(Date.parse(req.body.fechaNacimiento))
+      fechaNacimiento: moment(req.body.fechaNacimiento)
     }))
     .then(user => {
       console.log(user.toJSON());
       res.send("Usuario creado: ");
+    })
+    .catch(error => {
+      console.log(error.message);
+      res.json(error.message, 500)
     });
 });
 
