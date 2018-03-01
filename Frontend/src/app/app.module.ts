@@ -8,6 +8,7 @@ import { NabvarComponent } from './components/nabvar/nabvar.component';
 import { RegistroUsuarioComponent } from './components/registro-usuario/registro-usuario.component';
 import { HeadingComponent } from './components/heading/heading.component';
 import { FeatureRoutingModule } from './app.routes';
+import { HomeComponent } from './components/home/home.component';
 
 
 @NgModule({
@@ -15,7 +16,8 @@ import { FeatureRoutingModule } from './app.routes';
     AppComponent,
     NabvarComponent,
     RegistroUsuarioComponent,
-    HeadingComponent
+    HeadingComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,
