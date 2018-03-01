@@ -4,7 +4,63 @@
     <div class="container">
       <div class="row">
         <!-- Formulario -->
-        
+        <section class="bar pt-0">
+          <div class="row">
+            <div class="col-md-12">
+              <div class="heading text-center">
+                <h2>Registrarse</h2>
+              </div>
+            </div>
+            <div class="col-md-8 mx-auto">
+              <form>
+                <div class="row">
+                  <div class="col-sm-6">
+                    <div class="form-group">
+                      <label for="documentIdentification">Documento de Identidad</label>
+                      <input id="documentIdentification" type="number" class="form-control" required
+                      maxlength="15" minlength="8" placeholder="Documento">
+                    </div>
+                  </div>
+                  <div class="col-sm-6">
+                    <div class="form-group">
+                      <label for="name">Nombre</label>
+                      <input id="name" type="text" class="form-control" required
+                      title="Solo letras"
+                      maxlength="40" minlength="4" placeholder="Nombre" pattern="[A-zñÑáéíóúÁÉÍÓÚ\s]+">
+                    </div>
+                  </div>
+                  <div class="col-sm-6">
+                    <div class="form-group">
+                      <label for="lastName1">Primer Apellido</label>
+                      <input id="lastName1" type="text" class="form-control" required
+                      title="Solo letras"
+                      maxlength="25" minlength="4" placeholder="Primer Apellido"
+                      pattern="[A-zñÑáéíóúÁÉÍÓÚ\s]+">
+                    </div>
+                  </div>
+                  <div class="col-sm-6">
+                    <div class="form-group">
+                      <label for="lastName2">Segundo Apellido</label>
+                      <input id="lastName2" type="text" class="form-control"
+                      maxlength="25" minlength="4" placeholder="Segundo Apellido"
+                      title="Solo letras"
+                      pattern="[A-zñÑáéíóúÁÉÍÓÚ\s]+">
+                    </div>
+                  </div>
+                  <div class="col-sm-6">
+                    <div class="form-group">
+                      <label for="fechaNacimiento">Fecha de Nacimiento</label>
+                      <input id="fechaNacimiento" type="date" min="01/03/1918" max="today" class="form-control" required>
+                    </div>
+                  </div>
+                  <div class="col-sm-12 text-center">
+                    <button type="submit" class="btn btn-template-outlined"><i class="fas fa-user-plus"></i>Guardar Datos</button>
+                  </div>
+                </div>
+              </form>
+            </div>
+          </div>
+        </section>
 
         <!-- Formulario -->
       </div>
