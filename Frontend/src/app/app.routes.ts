@@ -2,10 +2,13 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { RegistroUsuarioComponent } from './components/registro-usuario/registro-usuario.component';
+import { HomeComponent } from './components/home/home.component';
+
 
 const routes: Routes = [
     { path: 'registro-usuario', component: RegistroUsuarioComponent },
-    { path: '**', redirectTo: 'registro-usuario', pathMatch: 'full' }
+    { path: 'home', component: HomeComponent },
+    { path: '**', redirectTo: 'home', pathMatch: 'full' }
 
 ];
 
