@@ -9,7 +9,7 @@ import { RegistroUsuarioComponent } from './components/registro-usuario/registro
 import { HeadingComponent } from './components/heading/heading.component';
 import { FeatureRoutingModule } from './app.routes';
 import { HomeComponent } from './components/home/home.component';
-
+import {HttpClientModule} from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -21,7 +21,8 @@ import { HomeComponent } from './components/home/home.component';
   ],
   imports: [
     BrowserModule,
-    FeatureRoutingModule
+    FeatureRoutingModule,
+    HttpClientModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
