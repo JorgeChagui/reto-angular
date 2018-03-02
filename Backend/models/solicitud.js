@@ -1,5 +1,5 @@
 module.exports = (sequelize, DataTypes) =>{
-    const user = sequelize.import(__dirname + "/Backend/models/user")
+    const user = sequelize.import("usuario", require('../models/user'))
     const solicitud = sequelize.define('solicitud',{
         id: {
             type: DataTypes.INTEGER,
