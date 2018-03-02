@@ -1,0 +1,59 @@
+<app-heading [titulo]="'Crédito'"></app-heading>
+
+<div id="content">
+    <div class="container">
+      <div class="row">
+        <!-- Formulario -->
+        <section class="bar pt-0">
+          <div class="row">
+            <div class="col-md-12">
+              <div class="heading text-center">
+                <h1>Solicitud de Crédito</h1>
+              </div>
+              <div class="heading text-center">
+                <h4>Datos de la empresa donde labora</h4>
+              </div>
+            </div>
+            <div class="col-md-8 mx-auto">
+              <form>
+                <div class="row">
+                  <div class="col-sm-6">
+                    <div class="form-group">
+                      <label for="name">Nombre de la empresa: </label>
+                      <input id="name" type="text" class="form-control" required title="Min=2, Max=20" maxlength="20" minlength="2" placeholder="Nombre de la empresa">
+                    </div>
+                  </div>
+                  <div class="col-sm-6">
+                    <div class="form-group">
+                      <label for="nit">Nit: </label>
+                      <input id="nit" type="text" class="form-control" required title="xxx.xxx.xxx-y" maxlength="13" minlength="13" placeholder="xxx.xxx.xxx-y">
+                    </div>
+                  </div>
+                  <div class="col-sm-6">
+                    <div class="form-group">
+                      <label for="salario">Salario Actual: </label>
+                      <input id="salario" type="number" class="form-control" required title="Min=30000 y Max=100000000" maxlength="9" minlength="5" placeholder="Salario actual"
+                        pattern="[A-zñÑáéíóúÁÉÍÓÚ\s]+">
+                    </div>
+                  </div>
+                  <div class="col-sm-6">
+                    <div class="form-group">
+                      <label for="fechaNacimiento">Fecha de Ingreso</label>
+                      <input id="fechaNacimiento" type="date" min="01/03/1918" max="today" class="form-control" required>
+                    </div>
+                  </div>
+                  <div class="col-sm-12 text-center">
+                    <button type="submit" class="btn btn-template-outlined">
+                        <i class="fas fa-credit-card"></i>Generar</button>
+                  </div>
+                </div>
+              </form>
+            </div>
+          </div>
+        </section>
+  
+        <!-- Formulario -->
+      </div>
+    </div>
+  </div>
+  
