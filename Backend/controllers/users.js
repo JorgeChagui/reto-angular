@@ -21,7 +21,7 @@ router.post('/', function (req, res, next) {
     }))
     .then(user => {
       console.log(user.toJSON());
-      res.send("Usuario creado: ");
+      res.send(user.toJSON());
     })
     .catch(error => {
       console.log(error.message);
