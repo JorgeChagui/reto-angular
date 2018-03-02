@@ -12,13 +12,13 @@
               </div>
             </div>
             <div class="col-md-8 mx-auto">
-              <form>
+              <form (ngSubmit)="onSubmit()">
                 <div class="row">
                   <div class="col-sm-6">
                     <div class="form-group">
                       <label for="documentIdentification">Documento de Identidad</label>
                       <input id="documentIdentification" type="number" class="form-control" required
-                      maxlength="15" minlength="8" placeholder="Documento">
+                      maxlength="15" minlength="8" placeholder="Documento" [(ngModel)]="usuario.cedula" name="cedula">
                     </div>
                   </div>
                   <div class="col-sm-6">
@@ -26,7 +26,7 @@
                       <label for="name">Nombre</label>
                       <input id="name" type="text" class="form-control" required
                       title="Solo letras"
-                      maxlength="40" minlength="4" placeholder="Nombre" pattern="[A-zñÑáéíóúÁÉÍÓÚ\s]+">
+                      maxlength="40" minlength="4" placeholder="Nombre" pattern="[A-zñÑáéíóúÁÉÍÓÚ\s]+" [(ngModel)]="usuario.nombre" name="nombre">
                     </div>
                   </div>
                   <div class="col-sm-6">
@@ -35,7 +35,7 @@
                       <input id="lastName1" type="text" class="form-control" required
                       title="Solo letras"
                       maxlength="25" minlength="4" placeholder="Primer Apellido"
-                      pattern="[A-zñÑáéíóúÁÉÍÓÚ\s]+">
+                      pattern="[A-zñÑáéíóúÁÉÍÓÚ\s]+" [(ngModel)]="usuario.primerApellido" name="primerApellido">
                     </div>
                   </div>
                   <div class="col-sm-6">
@@ -44,13 +44,13 @@
                       <input id="lastName2" type="text" class="form-control"
                       maxlength="25" minlength="4" placeholder="Segundo Apellido"
                       title="Solo letras"
-                      pattern="[A-zñÑáéíóúÁÉÍÓÚ\s]+">
+                      pattern="[A-zñÑáéíóúÁÉÍÓÚ\s]+" [(ngModel)]="usuario.segundoApellido" name="segundoApellido">
                     </div>
                   </div>
                   <div class="col-sm-6">
                     <div class="form-group">
                       <label for="fechaNacimiento">Fecha de Nacimiento</label>
-                      <input id="fechaNacimiento" type="date" min="01/03/1918" max="today" class="form-control" required>
+                      <input id="fechaNacimiento" type="date" min="01/03/1918" max="today" class="form-control" required [(ngModel)]="usuario.fechaNacimiento" name="fechaNacimieto">
                     </div>
                   </div>
                   <div class="col-sm-12 text-center">
