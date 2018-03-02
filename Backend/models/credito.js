@@ -1,23 +1,22 @@
-const user = sequelize.import(__dirname + "/Backend/models/user")
-module.exports = (sequelize, DataTypes) =>{
+module.exports = (sequelize, DataTypes) => {
     return sequelize.define('credito',{
         id: {
-            type: DataTypes.INTEGER,
-            primaryKey:true,
+            type: DataTypes.INTEGER, 
+            primaryKey:true, 
             autoIncrement:true,
         },
 
-        salario: {
-            type: DataTypes.INTEGER,
-            allowNull:false,
+        nombre: {
+            type: DataTypes.STRING, 
+            allowNull:false,  
             validate:{
-                max: 100000000,
+                min:5,
             },
-        },
 
-        fechaIngreso: {
-            type: DataTypes.DATEONLY,             
-        },
-
-    });
+        valor: {
+            type:DataTypes.INTEGER,
+            allowNull: false,
+        }
+        }
+    })
 }
