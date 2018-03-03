@@ -8,7 +8,7 @@ var createUser = function (req, res, next) {
   if(req.body.segundoApellido === ""){
     req.body.segundoApellido = null;
   }
-    sequelize.sync({force : true})
+    sequelize.sync()
       .then(() => User.create({
         cedula: req.body.cedula,
         nombre: req.body.nombre,
