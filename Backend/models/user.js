@@ -1,3 +1,4 @@
+'use strict';
 var moment = require('moment');
 
 module.exports = (sequelize, DataTypes) => {
@@ -53,6 +54,9 @@ module.exports = (sequelize, DataTypes) => {
       }
     }
   });
-  // User.hasMany(Solicitud);
+
+  User.associate = function(models) {
+    models.usuario.hasMany(models.solicitud);
+  };
   return User;
 }

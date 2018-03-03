@@ -1,5 +1,5 @@
 module.exports = (sequelize, DataTypes) => {
-    return sequelize.define('empresa',{
+    var Empresa = sequelize.define('empresa',{
         id: {
             type: DataTypes.INTEGER, 
             primaryKey:true, 
@@ -22,5 +22,9 @@ module.exports = (sequelize, DataTypes) => {
                 min:5,
             }
         }
-    })
+    });
+    Empresa.associate = function(models) {
+        models.empresa.hasMany(models.usuario);
+      };
+    return Empresa;
 }

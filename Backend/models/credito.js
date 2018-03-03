@@ -1,5 +1,5 @@
 module.exports = (sequelize, DataTypes) => {
-    return sequelize.define('credito',{
+    var credito = sequelize.define('credito',{
         id: {
             type: DataTypes.INTEGER, 
             primaryKey:true, 
@@ -18,5 +18,7 @@ module.exports = (sequelize, DataTypes) => {
             allowNull: false,
         }
         }
-    })
+    });
+
+    return credito;
 }

@@ -1,18 +1,14 @@
-var sequelize = require('../ssql');
+var solicitud = require('../models').solicitud;
 
-//Model
-const solicitud = sequelize.import("solicitud", require('../models/solicitud'));
-
-var createSolicitud = function(req, res, next){
-    sequelize.sync()
-    .then(() => solicitud.create({
+var createSolicitud = function (req, res, next) {
+    solicitud.create({
         salario: req.body.salario,
         fechaIngreso: req.body.fechaIngreso,
-    }))
-    .then(solicitud => {
-        console.log(solicitud.toJSON());
-        res.send("Solicitud creada: ");
-    });
+    })
+        .then(solicitud => {
+            console.log(solicitud.toJSON());
+            res.send("Solicitud creada: ");
+        });
 }
 
 module.exports.createSolicitud = createSolicitud;
