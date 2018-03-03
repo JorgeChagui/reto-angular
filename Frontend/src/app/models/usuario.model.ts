@@ -12,7 +12,7 @@ export class Usuario {
       this.cedula = '';
       this.nombre = '';
       this.primerApellido = '';
-      this.segundoApellido = '';
+      this.segundoApellido = null;
       this.fechaNacimiento = new Date();
     }
   }

@@ -5,8 +5,10 @@ var sequelize = require('../ssql');
 const User = sequelize.import("usuario", require('../models/user'));
 
 var createUser = function (req, res, next) {
-  
-    sequelize.sync()
+  if(req.body.segundoApellido === ""){
+    req.body.segundoApellido = null;
+  }
+    sequelize.sync({force : true})
       .then(() => User.create({
         cedula: req.body.cedula,
         nombre: req.body.nombre,
@@ -20,7 +22,7 @@ var createUser = function (req, res, next) {
       })
       .catch(error => {
         console.log(error.message);
-        res.json(error.message, 500)
+        res.json(error.message);
       });
   }
 
@@ -40,6 +42,8 @@ var findById = function (req, res, next) {
       });
   }
 
-module.exports.createUser = createUser;
-module.exports.findAll = findAll;
-module.exports.findById = findById;
+module.exports = {
+  createUser : createUser,
+  findAll : findAll,
+  findById : findById
+}

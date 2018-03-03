@@ -1,5 +1,5 @@
 module.exports = (sequelize, DataTypes) =>{
-    const user = sequelize.import("usuario", require('../models/user'))
+    // const user = sequelize.import("usuario", require('../models/user'));
     const solicitud = sequelize.define('solicitud',{
         id: {
             type: DataTypes.INTEGER,
@@ -21,6 +21,6 @@ module.exports = (sequelize, DataTypes) =>{
     
     });
     
-    solicitud.hasMany(user, {foreignKey : 'id'});;
+    // solicitud.belongsTo(user);
     return solicitud;
 }

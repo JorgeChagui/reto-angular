@@ -1,13 +1,16 @@
 var moment = require('moment');
-console.log(moment().subtract(18, "years").format("YYYY-MM-DD").toString());
-
-var date = moment().subtract(18, "years").format("YYYY-MM-DD").toString();
 
 module.exports = (sequelize, DataTypes) => {
-  return sequelize.define('usuario', {
+  // const Solicitud = sequelize.import("solicitud", require('../models/solicitud'))
+  var date = moment().subtract(18, "years").format("YYYY-MM-DD").toString();
+  const User = sequelize.define('usuario', {
     id: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true },
     cedula: {
       type: DataTypes.STRING,
+      unique: {
+        args: true,
+        msg: "La cedula ingresada ya está registrada"
+      },
       allowNull: false,
       validate: {
         isNumeric: true,
@@ -18,7 +21,7 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.STRING, 
       allowNull: false,
       validate: {
-        is: ["^[a-z]+$",'i'], 
+        is: ["^([a-z])+(\\s[a-z]+)*$",'i'], 
         len: [3,50]
       }
     },
@@ -49,5 +52,7 @@ module.exports = (sequelize, DataTypes) => {
         }
       }
     }
-  })
+  });
+  // User.hasMany(Solicitud);
+  return User;
 }
