@@ -1,9 +1,9 @@
 module.exports = {
     development: {
-        username: "sa",
+        username: "solicitarcredito2",
         password: "123",
-        database: "testDB",
-        host: "localhost",
+        database: "SOLICITARCREDITO2",
+        host: "192.168.3.115",
         dialect: "mssql",
         pool: {
             max: 5,
