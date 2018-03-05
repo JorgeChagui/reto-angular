@@ -3,7 +3,7 @@ module.exports = (sequelize, DataTypes) => {
         id: {
             type: DataTypes.INTEGER, 
             primaryKey:true, 
-            // autoIncrement:true,
+            autoIncrement:true,
         },
 
         nombre: {
@@ -11,13 +11,13 @@ module.exports = (sequelize, DataTypes) => {
             allowNull:false,  
             validate:{
                 min:5,
-            }
-        },
+            },
+
         valor: {
             type:DataTypes.INTEGER,
             allowNull: false,
         }
-        
+        }
     });
 
     return credito;

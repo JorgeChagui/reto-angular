@@ -9,7 +9,6 @@ import { UsuariosService } from '../../services/usuarios/usuarios.service';
 })
 export class RegistroUsuarioComponent implements OnInit {
   usuario: Usuario;
-  public errors: string[];
   constructor(private usuariosService: UsuariosService) {
     this.usuario = new Usuario();
   }
@@ -18,15 +17,10 @@ export class RegistroUsuarioComponent implements OnInit {
   }
 
   onSubmit() {
-    this.usuariosService.postUsuarios(this.usuario).subscribe(
-      data => {
-        console.log(data);
-        localStorage.setItem('identidad', JSON.stringify(data));
-      },
-      error => {
-        this.errors = error.error.message;
-        console.log(this.errors);
-      });
+    this.usuariosService.postUsuarios(this.usuario).subscribe(data => {
+      console.log(data);
+
+    });
   }
 
 }

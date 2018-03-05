@@ -10,13 +10,6 @@
               <div class="heading text-center">
                 <h2>Registrarse</h2>
               </div>
-            </div>            
-            <div class="container col-md-6 text-center">
-              <div *ngIf="errors" class="alert alert-primary" role="alert">
-                <p *ngFor="let error of errors" >
-                  {{error}}
-                </p>
-              </div>
             </div>
             <div class="col-md-8 mx-auto">
               <form (ngSubmit)="onSubmit()">
@@ -61,7 +54,7 @@
                     </div>
                   </div>
                   <div class="col-sm-12 text-center">
-                    <button type="submit" class="btn btn-template-outlined"><i class="fas fa-user-plus"></i>Guardar Datos</button>
+                    <button id="guardarDatos" type="submit" class="btn btn-template-outlined"><i class="fas fa-user-plus"></i>Guardar Datos</button>
                   </div>
                 </div>
               </form>
