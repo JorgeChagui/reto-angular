@@ -20,26 +20,26 @@ export class SolicitudCreditoComponent implements OnInit {
   ngOnInit() {
   }
   onSubmit() {
-    var json = {
+    const json = {
       usuario: JSON.parse(localStorage.getItem('identidad')).id,
-      empresa: { 
-                  nit: this.empresa.nit,
-                  nombre: this.empresa.nombre
+      empresa: {
+        nit: this.empresa.nit,
+        nombre: this.empresa.nombre
       },
-      solicitud:{
-                  salario: this.solicitud.salario,  
-                  fechaIngreso: this.solicitud.fechaDeIngreso
-                  
+      solicitud: {
+        salario: this.solicitud.salario,
+        fechaIngreso: this.solicitud.fechaDeIngreso
+
       }
-      
-    }
+
+    };
     this.solicitudService.postSolicitud(json).subscribe(data => {
-      
+
 
       console.log(data);
-       
-     });
-    
+
+    });
+
   }
 
 }

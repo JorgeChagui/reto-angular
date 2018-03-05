@@ -16,6 +16,7 @@ import { SolicitudCreditoComponent } from './components/solicitud-credito/solici
 
 // servicios
 import { UsuariosService } from './services/usuarios/usuarios.service';
+import { SolicitudService } from './services/Solicitud/solicitud.service';
 
 
 @NgModule({
@@ -33,7 +34,8 @@ import { UsuariosService } from './services/usuarios/usuarios.service';
     FeatureRoutingModule,
     FormsModule
   ],
-  providers: [UsuariosService],
+  providers: [UsuariosService,
+    SolicitudService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

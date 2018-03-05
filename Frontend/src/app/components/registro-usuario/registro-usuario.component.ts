@@ -10,6 +10,7 @@ import { Router } from '@angular/router';
 })
 export class RegistroUsuarioComponent implements OnInit {
   usuario: Usuario;
+  public errors: string[];
   constructor(private usuariosService: UsuariosService, private route: Router) {
     this.usuario = new Usuario();
   }
@@ -18,11 +19,16 @@ export class RegistroUsuarioComponent implements OnInit {
   }
 
   onSubmit() {
-    this.usuariosService.postUsuarios(this.usuario).subscribe(data => {
-      console.log(data);
-      localStorage.setItem('identidad', JSON.stringify(data));
+    this.usuariosService.postUsuarios(this.usuario).subscribe(
+      data => {
+        console.log(data);
+        localStorage.setItem('identidad', JSON.stringify(data));
         this.route.navigate(['/solicitud-credito']);
-    });
+      },
+      error => {
+        this.errors = error.error.message;
+        console.log(this.errors);
+      });
   }
 
 }

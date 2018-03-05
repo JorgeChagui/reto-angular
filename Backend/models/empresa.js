@@ -10,8 +10,8 @@ module.exports = (sequelize, DataTypes) => {
             type: DataTypes.STRING, 
             allowNull:false,
             validate:{
-                len: [8,15],
-                not: ["[a-z]",'i'],
+                len: [10,10],
+                isNumeric: true,
             },
         },
 

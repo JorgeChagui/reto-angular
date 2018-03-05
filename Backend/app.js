@@ -31,7 +31,7 @@ app.use((req, res, next) => {
 app.use('/usuarios', users);
 app.use('/empresa', empresa);
 app.use('/solicitud', solicitud);
-app.use('/crredito', credito);
+app.use('/credito', credito);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

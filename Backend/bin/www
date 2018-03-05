@@ -25,6 +25,40 @@ var server = http.createServer(app);
  * Listen on provided port, on all network interfaces.
  */
 models.sequelize.sync().then(function () {
+
+  models.credito.findOrCreate({
+    where: {
+      id: 1,
+      nombre: "tipo 1",
+      valor: 5000000
+    }
+  }).spread((empresa, created) => {
+    models.credito.findOrCreate({
+      where: {
+        id: 2,
+        nombre: "tipo 2",
+        valor: 20000000
+      }
+    }).spread((empresa, created) => {
+      models.credito.findOrCreate({
+        where: {
+          id: 3,
+          nombre: "tipo 3",
+          valor: 50000000
+        }
+      }).spread((empresa, created) => {
+        models.credito.findOrCreate({
+          where: {
+            id: 0,
+            nombre: "tipo 0",
+            valor: 0
+          }
+        }).spread((empresa, created) => {
+
+        });
+      });
+    });
+  });
   /**
    * Listen on provided port, on all network interfaces.
    */

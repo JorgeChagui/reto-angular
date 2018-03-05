@@ -1,24 +1,25 @@
 module.exports = (sequelize, DataTypes) => {
-    var credito = sequelize.define('credito',{
+    var credito = sequelize.define('credito', {
         id: {
-            type: DataTypes.INTEGER, 
-            primaryKey:true, 
-            autoIncrement:true,
+            type: DataTypes.INTEGER,
+            primaryKey: true,
+            // autoIncrement:true,
         },
 
         nombre: {
-            type: DataTypes.STRING, 
-            allowNull:false,  
-            validate:{
-                min:5,
+            type: DataTypes.STRING,
+            allowNull: false,
+            validate: {
+                min: 5,
             },
-
+        },
+        
         valor: {
-            type:DataTypes.INTEGER,
+            type: DataTypes.INTEGER,
             allowNull: false,
         }
-        }
+    
     });
 
-    return credito;
+return credito;
 }
