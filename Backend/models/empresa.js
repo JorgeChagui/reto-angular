@@ -10,8 +10,13 @@ module.exports = (sequelize, DataTypes) => {
             type: DataTypes.STRING, 
             allowNull:false,
             validate:{
-                len: [10,10],
-                isNumeric: true,
+                len: {
+                    args: [10,10],
+                    msg: "Ingrese 10 números en NIT"
+                  },
+                isNumeric: {
+                    msg: "Ingrese sólo números en NIT"
+                  }
             },
         },
 
