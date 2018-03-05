@@ -3,6 +3,7 @@ import { Solicitud } from '../../models/solicitud.model';
 import { Empresa } from '../../models/empresa.model';
 import { SolicitudService } from '../../services/Solicitud/solicitud.service';
 import { validateConfig } from '@angular/router/src/config';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-solicitud-credito',
@@ -12,12 +13,18 @@ import { validateConfig } from '@angular/router/src/config';
 export class SolicitudCreditoComponent implements OnInit {
   empresa: Empresa;
   solicitud: Solicitud;
-  constructor(private solicitudService: SolicitudService) {
+  public errors: string[];
+  constructor(private solicitudService: SolicitudService, private route: Router) {
     this.empresa = new Empresa();
     this.solicitud = new Solicitud();
   }
 
   ngOnInit() {
+    if (localStorage.getItem('identidad')) {
+      console.log('Registrado');
+    } else {
+      this.route.navigate(['/home']);
+    }
   }
   onSubmit() {
     const json = {
@@ -28,17 +35,23 @@ export class SolicitudCreditoComponent implements OnInit {
       },
       solicitud: {
         salario: this.solicitud.salario,
-        fechaIngreso: this.solicitud.fechaDeIngreso
+        fechaIngreso: this.solicitud.fechaIngreso
 
       }
 
     };
-    this.solicitudService.postSolicitud(json).subscribe(data => {
-
-
-      console.log(data);
-
-    });
+    console.log(json);
+    this.solicitudService.postSolicitud(json).subscribe(
+      data => {
+        console.log(data);
+        // localStorage.clear();
+        // localStorage.setItem('identidad', JSON.stringify(data));
+        // this.route.navigate(['/solicitud-credito']);
+      },
+      error => {
+        this.errors = error.error.message;
+        console.log(this.errors);
+      });
 
   }
 

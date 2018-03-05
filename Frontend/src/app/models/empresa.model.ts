@@ -7,7 +7,7 @@ export class Empresa {
 
   constructor() {
     this.id = null;
-    this.nit = 0;
+    this.nit = null;
     this.nombre = '';
   }
 }
