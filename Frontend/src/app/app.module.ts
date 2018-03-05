@@ -2,6 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import {TextMaskModule} from '../../node_modules/angular2-text-mask';
 
 // rutas
 import { FeatureRoutingModule } from './app.routes';
@@ -32,7 +33,8 @@ import { SolicitudService } from './services/Solicitud/solicitud.service';
     BrowserModule,
     HttpClientModule,
     FeatureRoutingModule,
-    FormsModule
+    FormsModule,
+    TextMaskModule
   ],
   providers: [UsuariosService,
     SolicitudService],
