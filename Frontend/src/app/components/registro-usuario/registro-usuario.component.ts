@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Usuario } from '../../models/usuario.model';
 import { UsuariosService } from '../../services/usuarios/usuarios.service';
-import { validateConfig } from '@angular/router/src/config';
 
 @Component({
   selector: 'app-registro-usuario',
@@ -20,21 +19,6 @@ export class RegistroUsuarioComponent implements OnInit {
   onSubmit() {
     this.usuariosService.postUsuarios(this.usuario).subscribe(data => {
       console.log(data);
-       var hola=String(data);
-        if(hola=="Validation error: Tienes que ser mayor de 18 años"){
-          
-        }
-      
-
-
-      
- 
-      
-      
-      
-      
-
-
 
     });
   }
