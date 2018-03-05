@@ -15,31 +15,31 @@
               </div>
             </div>
             <div class="col-md-8 mx-auto">
-              <form>
+              <form (ngSubmit)="onSubmit()">
                 <div class="row">
                   <div class="col-sm-6">
                     <div class="form-group">
                       <label for="name">Nombre de la empresa: </label>
-                      <input id="name" type="text" class="form-control" required title="Min=2, Max=20" maxlength="20" minlength="2" placeholder="Nombre de la empresa">
+                      <input id="name" type="text" class="form-control" required title="Min=2, Max=20" maxlength="20" minlength="2" placeholder="Nombre de la empresa" [(ngModel)]="empresa.nombre" name="nombre">
                     </div>
                   </div>
                   <div class="col-sm-6">
                     <div class="form-group">
                       <label for="nit">Nit: </label>
-                      <input id="nit" type="text" class="form-control" required title="xxx.xxx.xxx-y" maxlength="13" minlength="13" placeholder="xxx.xxx.xxx-y">
+                      <input id="nit" type="text" class="form-control" required title="xxx.xxx.xxx-y" maxlength="13" minlength="13" placeholder="xxx.xxx.xxx-y" [(ngModel)]="empresa.nit" name="nit">
                     </div>
                   </div>
                   <div class="col-sm-6">
                     <div class="form-group">
                       <label for="salario">Salario Actual: </label>
                       <input id="salario" type="number" class="form-control" required title="Min=30000 y Max=100000000" maxlength="9" minlength="5" placeholder="Salario actual"
-                        pattern="[A-zñÑáéíóúÁÉÍÓÚ\s]+">
+                        pattern="[A-zñÑáéíóúÁÉÍÓÚ\s]+" [(ngModel)]="solicitud.sueldo" name="sueldo">
                     </div>
                   </div>
                   <div class="col-sm-6">
                     <div class="form-group">
                       <label for="fechaNacimiento">Fecha de Ingreso</label>
-                      <input id="fechaNacimiento" type="date" min="01/03/1918" max="today" class="form-control" required>
+                      <input id="fechaNacimiento" type="date" min="01/03/1918" max="today" class="form-control" required [(ngModel)]="solicitud.fechaDeIngreso" name="fechaDeIngreso"> 
                     </div>
                   </div>
                   <div class="col-sm-12 text-center">
