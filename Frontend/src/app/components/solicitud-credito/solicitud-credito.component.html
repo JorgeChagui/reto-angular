@@ -33,7 +33,7 @@
                   <div class="col-sm-6">
                     <div class="form-group">
                       <label for="nit">Nit: </label>
-                      <input id="nit" type="text" class="form-control" required title="xxx.xxx.xxx-y" maxlength="10" minlength="10" placeholder="xxx.xxx.xxx-y" [(ngModel)]="empresa.nit" name="nit">
+                      <input [textMask]="{mask: mask}" id="nit" type="text" class="form-control" required title="xxx.xxx.xxx-y" placeholder="xxx.xxx.xxx-y" [(ngModel)]="empresa.nit" name="nit">
                     </div>
                   </div>
                   <div class="col-sm-6">
