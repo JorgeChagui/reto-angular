@@ -14,6 +14,7 @@ export class SolicitudCreditoComponent implements OnInit {
   empresa: Empresa;
   solicitud: Solicitud;
   public errors: string[];
+  public mask = [/[1-9]/, /\d/, /\d/,'.', /\d/, /\d/, /\d/, '.', /\d/, /\d/, /\d/,'-',/\d/];
   constructor(private solicitudService: SolicitudService, private route: Router) {
     this.empresa = new Empresa();
     this.solicitud = new Solicitud();
@@ -30,7 +31,7 @@ export class SolicitudCreditoComponent implements OnInit {
     const json = {
       usuario: JSON.parse(localStorage.getItem('identidad')).id,
       empresa: {
-        nit: this.empresa.nit,
+        nit: this.empresa.nit.toString().replace("-","").replace(".","").replace(".",""),
         nombre: this.empresa.nombre
       },
       solicitud: {
