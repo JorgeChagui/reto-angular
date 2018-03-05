@@ -25,7 +25,7 @@
                     <div class="form-group">
                       <label for="documentIdentification">Documento de Identidad</label>
                       <input id="documentIdentification" type="number" class="form-control" required
-                      maxlength="15" minlength="8" placeholder="Documento" [(ngModel)]="usuario.cedula" name="cedula">
+                      maxlength="10" minlength="5" placeholder="Documento" [(ngModel)]="usuario.cedula" name="cedula">
                     </div>
                   </div>
                   <div class="col-sm-6">
@@ -33,7 +33,7 @@
                       <label for="name">Nombre</label>
                       <input id="name" type="text" class="form-control" required
                       title="Solo letras"
-                      maxlength="40" minlength="4" placeholder="Nombre" pattern="[A-zñÑáéíóúÁÉÍÓÚ\s]+" [(ngModel)]="usuario.nombre" name="nombre">
+                      maxlength="50" minlength="3" placeholder="Nombre" pattern="[A-zñÑáéíóúÁÉÍÓÚ\s]+" [(ngModel)]="usuario.nombre" name="nombre">
                     </div>
                   </div>
                   <div class="col-sm-6">
@@ -41,7 +41,7 @@
                       <label for="lastName1">Primer Apellido</label>
                       <input id="lastName1" type="text" class="form-control" required
                       title="Solo letras"
-                      maxlength="25" minlength="4" placeholder="Primer Apellido"
+                      maxlength="50" minlength="3" placeholder="Primer Apellido"
                       pattern="[A-zñÑáéíóúÁÉÍÓÚ\s]+" [(ngModel)]="usuario.primerApellido" name="primerApellido">
                     </div>
                   </div>
@@ -49,7 +49,7 @@
                     <div class="form-group">
                       <label for="lastName2">Segundo Apellido</label>
                       <input id="lastName2" type="text" class="form-control"
-                      maxlength="25" minlength="4" placeholder="Segundo Apellido"
+                      maxlength="50" minlength="3" placeholder="Segundo Apellido"
                       title="Solo letras"
                       pattern="[A-zñÑáéíóúÁÉÍÓÚ\s]+" [(ngModel)]="usuario.segundoApellido" name="segundoApellido">
                     </div>
