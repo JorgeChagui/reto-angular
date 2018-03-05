@@ -15,10 +15,12 @@ var createUser = function (req, res, next) {
     fechaNacimiento: moment(req.body.fechaNacimiento)
   })
     .then(user => {
-      res.status(200).send(user.toJSON());
+      console.log(user.toJSON());
+      res.send(user.toJSON());
     })
     .catch(error => {
-      res.status(500).send({message: error.message.toString().replace(/\n/g, "").split(",")});
+      console.log(error.message);
+      res.json(error.message);
     });
 }
 

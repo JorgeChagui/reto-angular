@@ -12,21 +12,10 @@ const httpOptions = {
 @Injectable()
 export class UsuariosService {
   private userUrl = 'http://localhost:3000/usuarios';
-  public identidad;
   constructor(private http: HttpClient) {
 
   }
-  public postUsuarios(usuario: Usuario) {
+  public postUsuarios (usuario: Usuario) {
     return this.http.post<Usuario>(this.userUrl, usuario, httpOptions);
-  }
-
-  public getIdentidad() {
-    const identidad = localStorage.getItem('identidad');
-    if (identidad !== 'undefined') {
-      this.identidad = identidad;
-    } else {
-      this.identidad = null;
-    }
-    return this.identidad;
   }
 }

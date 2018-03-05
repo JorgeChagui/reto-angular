@@ -4,7 +4,7 @@ var usuarioCtrl = require('../controllers/usuarioCtrl');
 
 console.log("Users Router");
 
-router.post("/", usuarioCtrl.createUser);
+router.post('/', usuarioCtrl.createUser);
 router.get("/", usuarioCtrl.findAll);
 router.post("/:id", usuarioCtrl.findById);
 
