@@ -2,13 +2,13 @@ export class Solicitud {
 
   id: number;
   salario: number;
-  fechaDeIngreso: Date;
+  fechaIngreso: Date;
 
 
   constructor() {
     this.id = null;
-    this.salario = 0;
-    this.fechaDeIngreso = new Date();
+    this.salario = null;
+    this.fechaIngreso = new Date();
 
   }
 }
