@@ -62,7 +62,7 @@ export class SolicitudCreditoComponent implements OnInit {
 
   }
   terminar() {
-    document.getElementById('openModalButton').click();
+    document.getElementById('cerrar').click();
     localStorage.clear();
     this.route.navigate(['/home']);
   }
