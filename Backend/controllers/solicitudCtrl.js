@@ -39,9 +39,9 @@ var createSolicitud = function (req, res, next) {
                         usuario.setEmpresa(empresa);
                         usuario.addSolicitud(solicitud);
                         var idCredito = 0;
-                        var message = "Credito aprovado";
+                        var message = "Crédito aprobado";
                         if (moment(solicitud.fechaIngreso).isBefore(moment().subtract(1.5, "years").format("YYYY-MM-DD"))) {
-                            console.log("la fecha de ingreso es de antes de 1 año y medio");
+                            console.log("La fecha de ingreso es de antes de 1 año y medio");
                             solicitud.aprovado = true;
 
                             if ((solicitud.salario > 800000) && (solicitud.salario <= 1000000)) {
@@ -53,13 +53,13 @@ var createSolicitud = function (req, res, next) {
                                     if (solicitud.salario > 4000000) {
                                         idCredito = 3;
                                     } else {
-                                        message = "Credito no aprovado: No tiene el salario mínimo requerido";
+                                        message = "Crédito no aprobado: No tiene el salario mínimo requerido";
                                         solicitud.aprovado = false;
                                     }
                                 }
                             }
                         } else {
-                            message = "Credito no aprovado: La fecha de ingreso debe ser hace más de 1 año y medio";
+                            message = "Crédito no aprobado: La fecha de ingreso debe ser hace más de 1 año y medio";
                         }
 
                         solicitud.idCredito = idCredito;
