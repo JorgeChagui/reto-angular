@@ -14,7 +14,8 @@ export class SolicitudCreditoComponent implements OnInit {
   empresa: Empresa;
   solicitud: Solicitud;
   public errors: string[];
-  public mask = [/[1-9]/, /\d/, /\d/,'.', /\d/, /\d/, /\d/, '.', /\d/, /\d/, /\d/,'-',/\d/];
+  public mask = [/[1-9]/, /\d/, /\d/, '.', /\d/, /\d/, /\d/, '.', /\d/, /\d/, /\d/, '-', /\d/];
+  public respuesta;
   constructor(private solicitudService: SolicitudService, private route: Router) {
     this.empresa = new Empresa();
     this.solicitud = new Solicitud();
@@ -28,10 +29,14 @@ export class SolicitudCreditoComponent implements OnInit {
     }
   }
   onSubmit() {
+    let nit = null;
+    if (this.empresa.nit) {
+      nit = this.empresa.nit.toString().replace('-', '').replace('.', '').replace('.', '');
+    }
     const json = {
       usuario: JSON.parse(localStorage.getItem('identidad')).id,
       empresa: {
-        nit: this.empresa.nit.toString().replace("-","").replace(".","").replace(".",""),
+        nit: nit,
         nombre: this.empresa.nombre
       },
       solicitud: {
@@ -45,8 +50,9 @@ export class SolicitudCreditoComponent implements OnInit {
     this.solicitudService.postSolicitud(json).subscribe(
       data => {
         console.log(data);
+        this.respuesta = data;
+        document.getElementById('openModalButton').click();
         // localStorage.clear();
-        // localStorage.setItem('identidad', JSON.stringify(data));
         // this.route.navigate(['/solicitud-credito']);
       },
       error => {
@@ -54,6 +60,11 @@ export class SolicitudCreditoComponent implements OnInit {
         console.log(this.errors);
       });
 
+  }
+  terminar() {
+    document.getElementById('cerrar').click();
+    localStorage.clear();
+    this.route.navigate(['/home']);
   }
 
 }

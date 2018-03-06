@@ -10,36 +10,57 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.STRING,
       unique: {
         args: true,
-        msg: "La cedula ingresada ya está registrada"
+        msg: "La cédula ingresada ya está registrada"
       },
       allowNull: false,
       validate: {
         isNumeric: true,
-        len: [5,10]
+        len: {
+          args: [5,10],
+          msg: "La cédula debe tener una longitud entre 5 y 10"
+        } 
       }
     },
     nombre: { 
       type: DataTypes.STRING, 
       allowNull: false,
       validate: {
-        is: ["^([a-zñÑáéíóúÁÉÍÓÚ])+(\\s[a-zñÑáéíóúÁÉÍÓÚ]+)*$",'i'], 
-        len: [3,50]
+        is: {
+          args:  ["^([a-zñÑáéíóúÁÉÍÓÚ])+(\\s[a-zñÑáéíóúÁÉÍÓÚ]+)*$",'i'],
+          msg: "Ingrese carácteres válidos en nombre"
+        }, 
+        len: {
+          args: [3,50],
+          msg: "El nombre debe tener una longitud entre 3 y 50"
+        }  
       }
     },
     primerApellido: { 
       type: DataTypes.STRING, 
       allowNull: false,
       validate: {
-        is: ["^[a-zñÑáéíóúÁÉÍÓÚ]+$",'i'], 
-        len: [3,50]
+        is: {
+          args: ["^[a-zñÑáéíóúÁÉÍÓÚ]+$",'i'],
+          msg: "Ingrese carácteres válidos en primer apellido"
+        }, 
+        len: {
+          args: [3,50],
+          msg: "El primer apellido debe tener una longitud entre 3 y 50"
+        }
       }
     },
     segundoApellido: { 
       type: DataTypes.STRING, 
       allowNull: true,
       validate: {
-        is: ["^[a-zñÑáéíóúÁÉÍÓÚ]+$",'i'], 
-        len: [3,50]
+        is: {
+          args: ["^[a-zñÑáéíóúÁÉÍÓÚ]+$",'i'],
+          msg: "Ingrese carácteres válidos en primer apellido"
+        },
+        len: {
+          args: [3,50],
+          msg: "El segundo apellido debe tener una longitud entre 3 y 50"
+        }
       }
     },
     fechaNacimiento: { 
