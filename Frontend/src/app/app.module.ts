@@ -18,6 +18,7 @@ import { SolicitudCreditoComponent } from './components/solicitud-credito/solici
 // servicios
 import { UsuariosService } from './services/usuarios/usuarios.service';
 import { SolicitudService } from './services/Solicitud/solicitud.service';
+import { ListaCreditosComponent } from './components/Lista-creditos/lista-creditos/lista-creditos.component';
 
 
 @NgModule({
@@ -27,7 +28,8 @@ import { SolicitudService } from './services/Solicitud/solicitud.service';
     RegistroUsuarioComponent,
     HeadingComponent,
     HomeComponent,
-    SolicitudCreditoComponent
+    SolicitudCreditoComponent,
+    ListaCreditosComponent
   ],
   imports: [
     BrowserModule,
