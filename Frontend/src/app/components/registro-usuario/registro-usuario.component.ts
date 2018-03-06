@@ -10,6 +10,7 @@ import { Router } from '@angular/router';
 })
 export class RegistroUsuarioComponent implements OnInit {
   usuario: Usuario;
+  mayor18: boolean;
   public errors: string[];
   constructor(private usuariosService: UsuariosService, private route: Router) {
     this.usuario = new Usuario();
@@ -31,4 +32,12 @@ export class RegistroUsuarioComponent implements OnInit {
       });
   }
 
+  onChangeFecha():  void  {
+    let  fechaNacimiento:  Date  =  new  Date(this.usuario.fechaNacimiento);
+    this.mayor18  =  (new  Date(((new  Date().getFullYear()  -  18)  +  "/"  +  (new  Date().getMonth()  +  1)  +  "/"  +  new  Date().getDate()))  >  fechaNacimiento)
+
+    if  (!this.mayor18) {
+      this.usuario.fechaNacimiento  =  null;
+    }
+  }
 }
