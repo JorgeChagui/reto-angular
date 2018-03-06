@@ -32,7 +32,7 @@ module.exports = (sequelize, DataTypes) => {
         idCredito: {
             type: DataTypes.INTEGER
         },
-        aprovado: {
+        aprobado: {
             type: DataTypes.BOOLEAN
         }
     }

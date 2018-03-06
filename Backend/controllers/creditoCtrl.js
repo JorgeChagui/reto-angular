@@ -3,7 +3,7 @@ var solicituds = require('../models').solicitud;
 
 var listarCredito = function (req, res, next) {
     solicituds.findAll({ where: {
-        aprovado: true
+        aprobado: true
     
       }
 
@@ -15,3 +15,6 @@ var listarCredito = function (req, res, next) {
   };
 
 module.exports.listarCredito = listarCredito;
+
+
+
