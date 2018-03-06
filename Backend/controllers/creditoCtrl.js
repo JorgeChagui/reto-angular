@@ -7,7 +7,7 @@ var createCredito = function (req, res, next) {
     })
         .then(credito => {
             console.log(credito.toJSON());
-            res.send("Credito creado: ");
+            res.send("Credito creada: ");
         });
 }
 
