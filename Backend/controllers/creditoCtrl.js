@@ -1,14 +1,17 @@
 var credito = require('../models').credito;
+var solicituds = require('../models').solicitud;
 
-var createCredito = function (req, res, next) {
-    credito.create({
-        nombre: req.body.nombre,
-        valor: req.body.valor,
+var listarCredito = function (req, res, next) {
+    solicituds.findAll({ where: {
+        aprovado: true
+    
+      }
+
+    
     })
-        .then(credito => {
-            console.log(credito.toJSON());
-            res.send("Credito creada: ");
-        });
-}
+      .then(result => {
+        res.send(result);
+      });
+  };
 
-module.exports.createCredito = createCredito;
+module.exports.listarCredito = listarCredito;

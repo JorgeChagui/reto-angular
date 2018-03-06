@@ -4,6 +4,8 @@ var empresa = require('../models').empresa;
 var credito = require('../models').credito;
 var moment = require('moment');
 
+
+
 var createSolicitud = function (req, res, next) {
     // peticion de tipo:
     // {
