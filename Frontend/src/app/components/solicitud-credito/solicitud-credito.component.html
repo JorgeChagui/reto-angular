@@ -1,102 +1,109 @@
 <app-heading [titulo]="'CRÉDITO'"></app-heading>
 
 <div id="content">
-    <div class="container">
-      <div class="row">
-        <!-- Formulario -->
-        <section class="bar pt-0">
-          <div class="row">
-            <div class="col-md-12">
-              <div class="heading text-center">
-                <h1>Solicitud de Crédito</h1>
-              </div>
-              <div class="heading text-center">
-                <h4>Datos de la empresa donde labora</h4>
-              </div>
+  <div class="container">
+    <div class="row">
+      <!-- Formulario -->
+      <section class="bar pt-0">
+        <div class="row">
+          <div class="col-md-12">
+            <div class="heading text-center">
+              <h1>Solicitud de Crédito</h1>
             </div>
-            <div class="container col-md-6 text-center">
-              <div *ngIf="errors" class="alert alert-primary" role="alert">
-                <p *ngFor="let error of errors" >
-                  {{error}}
-                </p>
-              </div>
-            </div>
-            <div class="col-md-8 mx-auto">
-              <form (ngSubmit)="onSubmit()">
-                <div class="row">
-                  <div class="col-sm-6">
-                    <div class="form-group">
-                      <label for="name">*Nombre de la empresa: </label>
-                      <input id="name" type="text" class="form-control" [(ngModel)]="empresa.nombre" name="nombre" #nombreEmpresaNg="ngModel" required minlength="3">
-                      <span *ngIf="!nombreEmpresaNg.valid && nombreEmpresaNg.touched">
-                          <div [hidden]="!nombreEmpresaNg.errors.minlength">Mínimo 2 caracteres</div>        
-                          <div [hidden]="!nombreEmpresaNg.errors.required">Obligatorio</div>
-                      </span>
-                    </div>
-                  </div>
-                  <div class="col-sm-6">
-                    <div class="form-group">
-                      <label for="nit">*Nit: </label>
-                      <input [textMask]="{mask: mask}" id="nit" type="text" class="form-control" placeholder="xxx.xxx.xxx-y" [(ngModel)]="empresa.nit" name="nit" #nitNg="ngModel" pattern="[0-9.-]*" required>
-                      <span *ngIf="!nitNg.valid && nitNg.touched">
-                          <div [hidden]="!nitNg.errors.pattern">Campo incompleto</div>
-                          <div [hidden]="!nitNg.errors.required">Obligatorio</div>
-                      </span>
-                    </div>
-                  </div>
-                  <div class="col-sm-6">
-                    <div class="form-group">
-                      <label for="salario">*Salario Actual: </label>
-                      <input id="salario" type="string" currencyMask class="form-control" maxlength="16" [(ngModel)]="solicitud.salario" name="salario" #SalarioNg="ngModel" required>
-                      <span *ngIf="!nitNg.valid && nitNg.touched">
-                        <div [hidden]="!nitNg.errors.pattern">Campo incompleto</div>
-                        <div [hidden]="!nitNg.errors.required">Obligatorio</div>
-                    </span>
-                    </div>
-                  </div>
-                  <div class="col-sm-6">
-                    <div class="form-group">
-                      <label for="fechaNacimiento">*Fecha de Ingreso</label>
-                      <input id="fechaNacimiento" type="date" min="01/03/1918" max="today" class="form-control" required [(ngModel)]="solicitud.fechaIngreso" name="fechaIngreso">
-                    </div>
-                  </div>
-                  <div class="col-sm-12 text-center">
-                    <button id="generar" type="submit" class="btn btn-template-outlined">
-                        <i class="fas fa-credit-card"></i> Generar</button>
-                  </div>
-                </div>
-              </form>
+            <div class="heading text-center">
+              <h4>Datos de la empresa donde labora</h4>
             </div>
           </div>
-        </section>
-        
-        <!-- Formulario -->
-
-        <button id="openModalButton" [hidden]="true" data-toggle="modal" data-target="#myModal">Open Modal</button>
-
-  <!-- Modal -->
-<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Solicitud Crédito</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
+          <div class="container col-md-6 text-center">
+            <div *ngIf="errors" class="alert alert-primary" role="alert">
+              <p *ngFor="let error of errors">
+                {{error}}
+              </p>
+            </div>
+          </div>
+          <div class="col-md-8 mx-auto">
+            <form (ngSubmit)="onSubmit()">
+              <div class="row">
+                <div class="col-sm-6">
+                  <div class="form-group">
+                    <label for="name">*Nombre de la empresa: </label>
+                    <input id="name" type="text" class="form-control" [(ngModel)]="empresa.nombre" name="nombre" #nombreEmpresaNg="ngModel" required
+                      minlength="3">
+                    <span *ngIf="!nombreEmpresaNg.valid && nombreEmpresaNg.touched">
+                      <div [hidden]="!nombreEmpresaNg.errors.minlength">Mínimo 2 caracteres</div>
+                      <div [hidden]="!nombreEmpresaNg.errors.required">Obligatorio</div>
+                    </span>
+                  </div>
+                </div>
+                <div class="col-sm-6">
+                  <div class="form-group">
+                    <label for="nit">*Nit: </label>
+                    <select name="NitOption" id="NitOption" [(ngModel)]="NitOption" #NitOptionNg="ngModel" class="form-control">
+                      <option value="1">Natural</option>
+                      <option value="2">Jurídica</option>
+                    </select>
+                    <div *ngIf="NitOptionNg.value=='1'">
+                      <input id="nit" type="text" class="form-control" [(ngModel)]="empresa.nit" name="nit" #nitNg="ngModel" pattern="[0-9]*" required>
+                    </div>
+                    <div *ngIf="NitOptionNg.value=='2'">
+                      <input [textMask]="{mask: mask}" id="nit" type="text" class="form-control" placeholder="xxx.xxx.xxx-y" [(ngModel)]="empresa.nit" name="nit" #nitNg="ngModel" pattern="[0-9.-]*" required>
+                    </div>
+                  </div>                  
+                  </div>
+                <div class="col-sm-6">
+                  <div class="form-group">
+                    <label for="salario">*Salario Actual: </label>
+                    <input id="salario" type="string" currencyMask class="form-control" maxlength="16" [(ngModel)]="solicitud.salario" name="salario"
+                      #SalarioNg="ngModel" required>
+                    <span *ngIf="!SalarioNg.valid && SalarioNg.touched">
+                      <div [hidden]="!SalarioNg.errors.pattern">Campo incompleto</div>
+                      <div [hidden]="!SalarioNg.errors.required">Obligatorio</div>
+                    </span>
+                  </div>
+                </div>
+                <div class="col-sm-6">
+                  <div class="form-group">
+                    <label for="fechaNacimiento">*Fecha de Ingreso</label>
+                    <input id="fechaNacimiento" type="date" min="01/03/1918" max="today" class="form-control" required [(ngModel)]="solicitud.fechaIngreso"
+                      name="fechaIngreso">
+                  </div>
+                </div>
+                <div class="col-sm-12 text-center">
+                  <button id="generar" type="submit" class="btn btn-template-outlined">
+                    <i class="fas fa-credit-card"></i> Generar</button>
+                </div>
+              </div>
+            </form>
+          </div>
         </div>
-        <div class="modal-body">
-            <div>{{respuesta?.message}}</div>
-            
-            <div *ngIf="respuesta?.estado">por {{respuesta?.valor | currency}}</div>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal" id="cerrar">Cerrar</button>
-          <button type="button" (click)= "terminar()" class="btn btn-primary">Terminar Sesión</button>
+      </section>
+
+      <!-- Formulario -->
+
+      <button id="openModalButton" [hidden]="true" data-toggle="modal" data-target="#myModal">Open Modal</button>
+
+      <!-- Modal -->
+      <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">Solicitud Crédito</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <div>{{respuesta?.message}}</div>
+
+              <div *ngIf="respuesta?.estado">por {{respuesta?.valor | currency}}</div>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal" id="cerrar">Cerrar</button>
+              <button type="button" (click)="terminar()" class="btn btn-primary">Terminar Sesión</button>
+            </div>
+          </div>
         </div>
       </div>
     </div>
   </div>
-      </div>
-    </div>
-  </div>
-  
+</div>
