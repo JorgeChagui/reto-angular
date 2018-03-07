@@ -42,9 +42,14 @@
                       <option value="1">Natural</option>
                       <option value="2">Jurídica</option>
                     </select>
+                    
                     <div *ngIf="NitOptionNg.value=='1'">
                       <input id="nit" type="text" class="form-control" [(ngModel)]="empresa.nit" name="nit" #nitNg="ngModel" pattern="[0-9]*" required>
                     </div>
+
+
+
+
                     <div *ngIf="NitOptionNg.value=='2'">
                       <input [textMask]="{mask: mask}" id="nit" type="text" class="form-control" placeholder="xxx.xxx.xxx-y" [(ngModel)]="empresa.nit" name="nit" #nitNg="ngModel" pattern="[0-9.-]*" required>
                     </div>
