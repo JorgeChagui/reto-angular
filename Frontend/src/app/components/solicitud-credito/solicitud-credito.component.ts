@@ -14,7 +14,7 @@ export class SolicitudCreditoComponent implements OnInit {
   empresa: Empresa;
   solicitud: Solicitud;
   public errors: string[];
-  public mask = [/\d/, /\d/, /\d/, '.', /\d/, /\d/, /\d/, '.', /\d/, /\d/, /\d/, '-', /\d/];
+  public mask = [/[1-9]/, /\d/, /\d/, '.', /\d/, /\d/, /\d/, '.', /\d/, /\d/, /\d/, '-', /\d/];
   public respuesta;
   constructor(private solicitudService: SolicitudService, private route: Router) {
     this.empresa = new Empresa();
