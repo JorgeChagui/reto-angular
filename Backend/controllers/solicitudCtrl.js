@@ -4,8 +4,6 @@ var empresa = require('../models').empresa;
 var credito = require('../models').credito;
 var moment = require('moment');
 
-
-
 var createSolicitud = function (req, res, next) {
     // peticion de tipo:
     // {
@@ -35,7 +33,7 @@ var createSolicitud = function (req, res, next) {
                     solicitud.create({
                         salario: req.body.solicitud.salario,
                         fechaIngreso: moment(req.body.solicitud.fechaIngreso),
-                        aprobado: false
+                        aprovado: false
                     }).then(solicitud => {
                         console.log(solicitud.toJSON());
                         usuario.setEmpresa(empresa);
@@ -44,7 +42,7 @@ var createSolicitud = function (req, res, next) {
                         var message = "Crédito aprobado";
                         if (moment(solicitud.fechaIngreso).isBefore(moment().subtract(1.5, "years").format("YYYY-MM-DD"))) {
                             console.log("La fecha de ingreso es de antes de 1 año y medio");
-                            solicitud.aprobado = true;
+                            solicitud.aprovado = true;
 
                             if ((solicitud.salario > 800000) && (solicitud.salario <= 1000000)) {
                                 idCredito = 1;
@@ -56,7 +54,7 @@ var createSolicitud = function (req, res, next) {
                                         idCredito = 3;
                                     } else {
                                         message = "Crédito no aprobado: No tiene el salario mínimo requerido";
-                                        solicitud.aprobado = false;
+                                        solicitud.aprovado = false;
                                     }
                                 }
                             }
@@ -69,7 +67,7 @@ var createSolicitud = function (req, res, next) {
                             credito.findById(solicitud.idCredito).then(credito => {
                                 console.log(credito.toJSON());
                                 var respuesta = {
-                                    estado: solicitud.aprobado,
+                                    estado: solicitud.aprovado,
                                     valor: credito.valor,
                                     message: message
                                 }
