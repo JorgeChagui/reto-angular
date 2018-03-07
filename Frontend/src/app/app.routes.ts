@@ -3,14 +3,12 @@ import { RouterModule, Routes } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { RegistroUsuarioComponent } from './components/registro-usuario/registro-usuario.component';
 import { HomeComponent } from './components/home/home.component';
-import { ListarCreditoComponent } from './components/listar-credito/listar-credito.component'
 import { SolicitudCreditoComponent } from './components/solicitud-credito/solicitud-credito.component';
 
 const routes: Routes = [
     { path: 'solicitud-credito', component: SolicitudCreditoComponent },
     { path: 'registro-usuario', component: RegistroUsuarioComponent },
     { path: 'home', component: HomeComponent },
-    { path: 'listar-credito', component: ListarCreditoComponent },
     { path: '**', redirectTo: 'home', pathMatch: 'full' }
 ];
 
