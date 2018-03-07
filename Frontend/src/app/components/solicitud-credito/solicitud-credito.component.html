@@ -1,91 +1,120 @@
 <app-heading [titulo]="'Crédito'"></app-heading>
 
 <div id="content">
-    <div class="container">
-      <div class="row">
-        <!-- Formulario -->
-        <section class="bar pt-0">
-          <div class="row">
-            <div class="col-md-12">
-              <div class="heading text-center">
-                <h1>Solicitud de Crédito</h1>
-              </div>
-              <div class="heading text-center">
-                <h4>Datos de la empresa donde labora</h4>
-              </div>
+  <div class="container">
+    <div class="row">
+      <!-- Formulario -->
+      <section class="bar pt-0">
+        <div class="row">
+          <div class="col-md-12">
+            <div class="heading text-center">
+              <h1>Solicitud de Crédito</h1>
             </div>
-            <div class="container col-md-6 text-center">
-              <div *ngIf="errors" class="alert alert-primary" role="alert">
-                <p *ngFor="let error of errors" >
-                  {{error}}
-                </p>
-              </div>
-            </div>
-            <div class="col-md-8 mx-auto">
-              <form (ngSubmit)="onSubmit()">
-                <div class="row">
-                  <div class="col-sm-6">
-                    <div class="form-group">
-                      <label for="name">Nombre de la empresa: </label>
-                      <input id="name" type="text" class="form-control" required title="Min=2" minlength="2" placeholder="Nombre de la empresa" [(ngModel)]="empresa.nombre" name="nombre">
-                    </div>
-                  </div>
-                  <div class="col-sm-6">
-                    <div class="form-group">
-                      <label for="nit">Nit: </label>
-                      <input [textMask]="{mask: mask}" id="nit" type="text" class="form-control" required title="xxx.xxx.xxx-y" placeholder="xxx.xxx.xxx-y" [(ngModel)]="empresa.nit" name="nit">
-                    </div>
-                  </div>
-                  <div class="col-sm-6">
-                    <div class="form-group">
-                      <label for="salario">Salario Actual: </label>
-                      <input id="salario" type="number" class="form-control" required title="Min=30000 y Max=100000000" maxlength="9" minlength="5" placeholder="Salario actual"
-                        pattern="[A-zñÑáéíóúÁÉÍÓÚ\s]+" [(ngModel)]="solicitud.salario" name="salario">
-                    </div>
-                  </div>
-                  <div class="col-sm-6">
-                    <div class="form-group">
-                      <label for="fechaNacimiento">Fecha de Ingreso</label>
-                      <input id="fechaNacimiento" type="date" min="01/03/1918" max="today" class="form-control" required [(ngModel)]="solicitud.fechaIngreso" name="fechaIngreso">
-                    </div>
-                  </div>
-                  <div class="col-sm-12 text-center">
-                    <button id="generar" type="submit" class="btn btn-template-outlined">
-                        <i class="fas fa-credit-card"></i> Generar</button>
-                  </div>
-                </div>
-              </form>
+            <div class="heading text-center">
+              <h4>Datos de la empresa donde labora</h4>
             </div>
           </div>
-        </section>
-        
-        <!-- Formulario -->
+          <div class="container col-md-6 text-center">
+            <div *ngIf="errors" class="alert alert-primary" role="alert">
+              <p *ngFor="let error of errors">
+                {{error}}
+              </p>
+            </div>
+          </div>
+          <div class="col-md-8 mx-auto">
+            <form (ngSubmit)="onSubmit()">
+              <div class="row">
+                <div class="col-sm-6">
+                  <div class="form-group">
+                    <label for="name">Nombre de la empresa: </label>
+                    <input [disabled]="disable" id="name" type="text" class="form-control" required title="Min=2" minlength="2" placeholder="Nombre de la empresa"
+                      [(ngModel)]="empresa.nombre" name="nombre">
+                  </div>
+                </div>
+                <div class="col-sm-6">
+                  <div class="form-group">
+                    <label for="nit">Nit: </label>
+                    <input [disabled]="disable" [textMask]="{mask: mask}" id="nit" type="text" class="form-control" required title="xxx.xxx.xxx-y"
+                      placeholder="xxx.xxx.xxx-y" [(ngModel)]="empresa.nit" name="nit">
+                  </div>
+                </div>
+                <div class="col-sm-6">
+                  <div class="form-group">
+                    <label for="salario">Salario Actual: </label>
+                    <input [disabled]="disable" id="salario" type="number" class="form-control" required title="Min=30000 y Max=100000000" maxlength="9"
+                      minlength="5" placeholder="Salario actual" pattern="[A-zñÑáéíóúÁÉÍÓÚ\s]+" [(ngModel)]="solicitud.salario"
+                      name="salario">
+                  </div>
+                </div>
+                <div class="col-sm-6">
+                  <div class="form-group">
+                    <label for="fechaNacimiento">Fecha de Ingreso</label>
+                    <input [disabled]="disable" id="fechaNacimiento" type="date" min="01/03/1918" max="today" class="form-control" required [(ngModel)]="solicitud.fechaIngreso"
+                      name="fechaIngreso">
+                  </div>
+                </div>
+                <div *ngIf="!show" class="col-sm-12 text-center">
+                  <button id="generar" type="submit" class="btn btn-template-outlined">
+                    <i class="fas fa-credit-card"></i> Generar</button>
+                </div>
+                <div *ngIf="show" class="col-sm-12 text-center">
+                    <button id="generar" type="submit" class="btn btn-template-outlined">
+                      <i class="fas fa-credit-card"></i> Listar</button>
+                      <button id="generar" type="submit" class="btn btn-template-outlined">
+                          <i class="fas fa-credit-card"></i> Solicitar</button>
+                  </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </section>
 
-        <button id="openModalButton" [hidden]="true" data-toggle="modal" data-target="#myModal">Open Modal</button>
+      <!-- Formulario -->
+      <button id="openModalApproved" [hidden]="true" data-toggle="modal" data-target="#ModalApproved">Open Modal</button>
+      <button id="openModalDisapproved" [hidden]="true" data-toggle="modal" data-target="#ModalDisapproved">Open Modal</button>
+    </div>
+  </div>
+</div>
 
-  <!-- Modal -->
-<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Solicitud Crédito</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="modal-body">
-            <div>{{respuesta?.message}}</div>
-            
-            <div *ngIf="respuesta?.estado">por {{respuesta?.valor | currency}}</div>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal" id="cerrar">Cerrar</button>
-          <button type="button" (click)= "terminar()" class="btn btn-primary">Terminar Sesion</button>
-        </div>
+<!-- Modal Approved-->
+<div class="modal fade" id="ModalApproved" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header color-modal-approved">
+        <h5 class="modal-title" id="exampleModalLabel">SOLICITUD CRÉDITO</h5>
+      </div>
+      <div class="modal-body" align="center">
+        <i class="fas fa-thumbs-up fa-5x iconModal" style="color:  #4fbfa8"></i>
+        <div>{{respuesta?.message}}</div>
+        <div *ngIf="respuesta?.estado">por: {{respuesta?.valor | currency}}</div>
+      </div>
+      <div class="modal-footer">
+        <button *ngIf="!disable" id="close" data-dismiss="modal" (click)="show = true" (click)="disable = true" type="button" (click)="terminar()" class="btn btn-template-main">Continuar
+          <i class="fas fa-arrow-circle-right icon"></i>
+        </button>
       </div>
     </div>
   </div>
+</div>
+
+<!-- Modal Disapproved-->
+<div class="modal fade" id="ModalDisapproved" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header color-modal-disapproved">
+        <h5 class="modal-title" id="exampleModalLabel">SOLICITUD CRÉDITO</h5>
+      </div>
+      <div class="modal-body" align="center">
+        <i class="fas fa-thumbs-down fa-5x iconModal" style="color: #b04057"></i>
+        <div>{{respuesta?.message}}</div>
+      </div>
+      <div class="modal-footer">
+        <button *ngIf="!disable" id="close2" data-dismiss="modal" (click)="disable = true" type="button" (click)="terminar2()" class="btn bottom">Continuar
+          <i class="fas fa-arrow-circle-right icon"></i>
+        </button>
       </div>
     </div>
   </div>
-  
+</div>
