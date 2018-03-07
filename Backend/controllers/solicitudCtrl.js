@@ -33,16 +33,16 @@ var createSolicitud = function (req, res, next) {
                     solicitud.create({
                         salario: req.body.solicitud.salario,
                         fechaIngreso: moment(req.body.solicitud.fechaIngreso),
-                        aprovado: false
+                        aprobado: false
                     }).then(solicitud => {
                         console.log(solicitud.toJSON());
                         usuario.setEmpresa(empresa);
                         usuario.addSolicitud(solicitud);
                         var idCredito = 0;
-                        var message = "Credito aprovado";
+                        var message = "Crédito aprobado";
                         if (moment(solicitud.fechaIngreso).isBefore(moment().subtract(1.5, "years").format("YYYY-MM-DD"))) {
-                            console.log("la fecha de ingreso es de antes de 1 año y medio");
-                            solicitud.aprovado = true;
+                            console.log("La fecha de ingreso es de antes de 1 año y medio");
+                            solicitud.aprobado = true;
 
                             if ((solicitud.salario > 800000) && (solicitud.salario <= 1000000)) {
                                 idCredito = 1;
@@ -53,13 +53,13 @@ var createSolicitud = function (req, res, next) {
                                     if (solicitud.salario > 4000000) {
                                         idCredito = 3;
                                     } else {
-                                        message = "Credito no aprovado: No tiene el salario mínimo requerido";
-                                        solicitud.aprovado = false;
+                                        message = "Crédito no aprobado: No tiene el salario mínimo requerido";
+                                        solicitud.aprobado = false;
                                     }
                                 }
                             }
                         } else {
-                            message = "Credito no aprovado: La fecha de ingreso debe ser hace más de 1 año y medio";
+                            message = "Crédito no aprobado: La fecha de ingreso debe ser hace más de 1 año y medio";
                         }
 
                         solicitud.idCredito = idCredito;
@@ -67,7 +67,7 @@ var createSolicitud = function (req, res, next) {
                             credito.findById(solicitud.idCredito).then(credito => {
                                 console.log(credito.toJSON());
                                 var respuesta = {
-                                    estado: solicitud.aprovado,
+                                    estado: solicitud.aprobado,
                                     valor: credito.valor,
                                     message: message
                                 }

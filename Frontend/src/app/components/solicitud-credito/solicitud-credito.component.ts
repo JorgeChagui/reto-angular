@@ -16,7 +16,7 @@ export class SolicitudCreditoComponent implements OnInit {
   empresa: Empresa;
   solicitud: Solicitud;
   public errors: string[];
-  public mask = [/[1-9]/, /\d/, /\d/, '.', /\d/, /\d/, /\d/, '.', /\d/, /\d/, /\d/, '-', /\d/];
+  public mask = [/\d/, /\d/, /\d/, '.', /\d/, /\d/, /\d/, '.', /\d/, /\d/, /\d/, '-', /\d/];
   public respuesta;
   // public disabled: boolean;
   constructor(private solicitudService: SolicitudService, private route: Router) {
@@ -33,6 +33,12 @@ export class SolicitudCreditoComponent implements OnInit {
   }
   onSubmit() {
     let nit = null;
+    let salario = null;
+
+    if (this.solicitud.salario) {
+      salario = this.solicitud.salario.toString().substr(0,this.solicitud.salario.toString().length-3).replace('$', '').replace(',', '');
+    }
+
     if (this.empresa.nit) {
       nit = this.empresa.nit.toString().replace('-', '').replace('.', '').replace('.', '');
     }
@@ -43,7 +49,7 @@ export class SolicitudCreditoComponent implements OnInit {
         nombre: this.empresa.nombre
       },
       solicitud: {
-        salario: this.solicitud.salario,
+        salario:salario,
         fechaIngreso: this.solicitud.fechaIngreso
 
       }

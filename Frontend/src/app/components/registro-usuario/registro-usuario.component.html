@@ -1,4 +1,4 @@
-<app-heading [titulo]="'Contacto'"></app-heading>
+<app-heading [titulo]="'CONTACTO'"></app-heading>
 
 <div id="content">
     <div class="container">
@@ -11,54 +11,67 @@
                 <h2>Registrarse</h2>
               </div>
             </div>
-          </div>            
-          <div class="container col-md-6 text-center">
-            <div *ngIf="errors" class="alert alert-primary" role="alert">
-              <p *ngFor="let error of errors" >
-                {{error}}
-              </p>
-            </div>
-          </div>
+          </div>     
+         
             <div class="col-md-8 mx-auto">
               <form (ngSubmit)="onSubmit()">
                 <div class="row">
                   <div class="col-sm-6">
                     <div class="form-group">
-                      <label for="documentIdentification">Documento de Identidad</label>
-                      <input id="documentIdentification" type="number" class="form-control" required
-                      maxlength="10" minlength="5" placeholder="Documento" [(ngModel)]="usuario.cedula" name="cedula">
+                      <label for="documentIdentification">*Documento de Identidad</label>
+                      <input id="documentIdentification" type="text" class="form-control" [(ngModel)]="usuario.cedula" name="cedula" #cedulaNg="ngModel" required minlength="5" maxlength="10" pattern="[0-9]*">
+                      <span *ngIf="!cedulaNg.valid && cedulaNg.touched">
+                        <div [hidden]="!cedulaNg.errors.minlength">Mínimo 5 números</div>          
+                        <div [hidden]="!cedulaNg.errors.maxlength">Máximo 10 números</div>          
+                        <div [hidden]="!cedulaNg.errors.required">Obligatorio</div>          
+                        <div [hidden]="!cedulaNg.errors.pattern">Solo números</div>
+                    </span>
                     </div>
                   </div>
                   <div class="col-sm-6">
                     <div class="form-group">
-                      <label for="name">Nombre</label>
-                      <input id="name" type="text" class="form-control" required
-                      title="Solo letras"
-                      maxlength="50" minlength="3" placeholder="Nombre" pattern="[A-zñÑáéíóúÁÉÍÓÚ\s]+" [(ngModel)]="usuario.nombre" name="nombre">
+                      <label for="name">*Nombre</label>
+                      <input id="name" type="text" class="form-control" [(ngModel)]="usuario.nombre" name="nombre" #nombreNg="ngModel" required minlength="3" maxlength="50" pattern="[A-Z a-zñÑáéíóúÁÉÍÓÚ]*">
+                      <span *ngIf="!nombreNg.valid && nombreNg.touched">
+                        <div [hidden]="!nombreNg.errors.minlength">Mínimo 3 caracteres</div>          
+                        <div [hidden]="!nombreNg.errors.maxlength">Máximo 50 caracteres</div>          
+                        <div [hidden]="!nombreNg.errors.required">Obligatorio</div>          
+                        <div [hidden]="!nombreNg.errors.pattern">Caracteres inválidos</div>          
+                    </span>
                     </div>
                   </div>
                   <div class="col-sm-6">
                     <div class="form-group">
-                      <label for="lastName1">Primer Apellido</label>
-                      <input id="lastName1" type="text" class="form-control" required
-                      title="Solo letras"
-                      maxlength="50" minlength="3" placeholder="Primer Apellido"
-                      pattern="[A-zñÑáéíóúÁÉÍÓÚ\s]+" [(ngModel)]="usuario.primerApellido" name="primerApellido">
+                      <label for="lastName1">*Primer Apellido</label>
+                      <input id="lastName1" type="text" class="form-control" [(ngModel)]="usuario.primerApellido" name="primerApellido" #primerApellidoNg="ngModel" required minlength="3" maxlength="50" pattern="[A-Z a-zñÑáéíóúÁÉÍÓÚ]*">
+                      <span *ngIf="!primerApellidoNg.valid && primerApellidoNg.touched">
+                          <div [hidden]="!primerApellidoNg.errors.minlength">Mínimo 3 caracteres</div>          
+                          <div [hidden]="!primerApellidoNg.errors.maxlength">Máximo 50 caracteres</div>          
+                          <div [hidden]="!primerApellidoNg.errors.required">Obligatorio</div>          
+                          <div [hidden]="!primerApellidoNg.errors.pattern">Caracteres inválidos</div>          
+                      </span>
                     </div>
                   </div>
                   <div class="col-sm-6">
                     <div class="form-group">
                       <label for="lastName2">Segundo Apellido</label>
-                      <input id="lastName2" type="text" class="form-control"
-                      maxlength="50" minlength="3" placeholder="Segundo Apellido"
-                      title="Solo letras"
-                      pattern="[A-zñÑáéíóúÁÉÍÓÚ\s]+" [(ngModel)]="usuario.segundoApellido" name="segundoApellido">
+                      <input id="lastName2" type="text" class="form-control" [(ngModel)]="usuario.segundoApellido" name="segundoApellido" #segundoApellidoNg="ngModel" minlength="3" maxlength="50" pattern="[A-Z a-zñÑáéíóúÁÉÍÓÚ]*">
+                      <span *ngIf="!segundoApellidoNg.valid && segundoApellidoNg.touched">
+                          <div [hidden]="!segundoApellidoNg.errors.minlength">Mínimo 3 caracteres</div>          
+                          <div [hidden]="!segundoApellidoNg.errors.maxlength">Máximo 50 caracteres</div>         
+                          <div [hidden]="!segundoApellidoNg.errors.pattern">Caracteres inválidos</div>          
+                      </span>
                     </div>
                   </div>
                   <div class="col-sm-6">
                     <div class="form-group">
-                      <label for="fechaNacimiento">Fecha de Nacimiento</label>
-                      <input id="fechaNacimiento" type="date" min="01/03/1918" max="today" class="form-control" required [(ngModel)]="usuario.fechaNacimiento" name="fechaNacimieto">
+                      <label for="fechaNacimiento">*Fecha de Nacimiento</label>
+                      <input id="fechaNacimiento" type="date" class="form-control" [(ngModel)]="usuario.fechaNacimiento" name="fechaNacimieto" #fechaNacimietoNg="ngModel" required min="01/01/1900" max="today" (change)="onChangeFecha()">
+                      <span *ngIf="!fechaNacimietoNg.valid && fechaNacimietoNg.touched">
+                          <div [hidden]="!fechaNacimietoNg.errors.minlength">Mínimo 01/01/1900</div>      
+                          <div [hidden]="!fechaNacimietoNg.errors.maxlength">No tienes aún 18 años</div>          
+                          <div [hidden]="!fechaNacimietoNg.errors.required">Obligatorio</div>
+                      </span>
                     </div>
                   </div>
                   <div class="col-sm-12 text-center">
