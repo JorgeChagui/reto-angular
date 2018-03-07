@@ -9,7 +9,7 @@ var listarCredito = function (req, res, next) {
      
             where: {
             aprobado: true,
-            id: req.body.usuario
+            usuarioId: req.body.usuario 
         }
         })
           .then(result => {

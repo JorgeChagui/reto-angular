@@ -30,6 +30,12 @@ export class SolicitudCreditoComponent implements OnInit {
   }
   onSubmit() {
     let nit = null;
+    let salario = null;
+
+    if (this.solicitud.salario) {
+      salario = this.solicitud.salario.toString().replace('$', '').replace(',', '').replace('.', '');
+    }
+
     if (this.empresa.nit) {
       nit = this.empresa.nit.toString().replace('-', '').replace('.', '').replace('.', '');
     }
@@ -40,7 +46,7 @@ export class SolicitudCreditoComponent implements OnInit {
         nombre: this.empresa.nombre
       },
       solicitud: {
-        salario: this.solicitud.salario,
+        salario:salario,
         fechaIngreso: this.solicitud.fechaIngreso
 
       }
