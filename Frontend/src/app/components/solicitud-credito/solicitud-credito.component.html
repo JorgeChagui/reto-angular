@@ -47,7 +47,11 @@
                   <div class="col-sm-6">
                     <div class="form-group">
                       <label for="salario">*Salario Actual: </label>
-                      <input id="salario" type="string" currencyMask class="form-control" maxlength="16" [(ngModel)]="solicitud.salario" name="salario">
+                      <input id="salario" type="string" currencyMask class="form-control" maxlength="16" [(ngModel)]="solicitud.salario" name="salario" #SalarioNg="ngModel" required>
+                      <span *ngIf="!nitNg.valid && nitNg.touched">
+                        <div [hidden]="!nitNg.errors.pattern">Campo incompleto</div>
+                        <div [hidden]="!nitNg.errors.required">Obligatorio</div>
+                    </span>
                     </div>
                   </div>
                   <div class="col-sm-6">
