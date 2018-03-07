@@ -47,13 +47,12 @@
                   <div class="col-sm-6">
                     <div class="form-group">
                       <label for="salario">*Salario Actual: </label>
-                      <input id="salario" type="string" currencyMask class="form-control" title="Min=30000 y Max=100000000" maxlength="16" placeholder="Salario actual"
-                        pattern="[A-zñÑáéíóúÁÉÍÓÚ\s]+" [(ngModel)]="solicitud.salario" name="salario">
+                      <input id="salario" type="string" currencyMask class="form-control" maxlength="16" [(ngModel)]="solicitud.salario" name="salario">
                     </div>
                   </div>
                   <div class="col-sm-6">
                     <div class="form-group">
-                      <label for="fechaNacimiento">Fecha de Ingreso</label>
+                      <label for="fechaNacimiento">*Fecha de Ingreso</label>
                       <input id="fechaNacimiento" type="date" min="01/03/1918" max="today" class="form-control" required [(ngModel)]="solicitud.fechaIngreso" name="fechaIngreso">
                     </div>
                   </div>
