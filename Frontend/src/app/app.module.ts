@@ -3,7 +3,6 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import {TextMaskModule} from '../../node_modules/angular2-text-mask';
-import { CurrencyMaskModule } from "ng2-currency-mask";
 
 // rutas
 import { FeatureRoutingModule } from './app.routes';
@@ -37,8 +36,7 @@ import { ListarCreditoComponent } from './components/listar-credito/listar-credi
     HttpClientModule,
     FeatureRoutingModule,
     FormsModule,
-    TextMaskModule,
-    CurrencyMaskModule
+    TextMaskModule
   ],
   providers: [UsuariosService,
     SolicitudService],

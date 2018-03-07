@@ -47,7 +47,7 @@
                   <div class="col-sm-6">
                     <div class="form-group">
                       <label for="salario">*Salario Actual: </label>
-                      <input id="salario" type="string" currencyMask class="form-control" title="Min=30000 y Max=100000000" maxlength="16" placeholder="Salario actual"
+                      <input id="salario" type="number" class="form-control" required title="Min=30000 y Max=100000000" maxlength="9" minlength="5" placeholder="Salario actual"
                         pattern="[A-zñÑáéíóúÁÉÍÓÚ\s]+" [(ngModel)]="solicitud.salario" name="salario">
                     </div>
                   </div>
