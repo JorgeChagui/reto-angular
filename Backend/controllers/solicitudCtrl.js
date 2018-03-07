@@ -33,7 +33,7 @@ var createSolicitud = function (req, res, next) {
                     solicitud.create({
                         salario: req.body.solicitud.salario,
                         fechaIngreso: moment(req.body.solicitud.fechaIngreso),
-                        aprovado: false
+                        aprobado: false
                     }).then(solicitud => {
                         console.log(solicitud.toJSON());
                         usuario.setEmpresa(empresa);
@@ -42,7 +42,7 @@ var createSolicitud = function (req, res, next) {
                         var message = "Crédito aprobado";
                         if (moment(solicitud.fechaIngreso).isBefore(moment().subtract(1.5, "years").format("YYYY-MM-DD"))) {
                             console.log("La fecha de ingreso es de antes de 1 año y medio");
-                            solicitud.aprovado = true;
+                            solicitud.aprobado = true;
 
                             if ((solicitud.salario > 800000) && (solicitud.salario <= 1000000)) {
                                 idCredito = 1;
@@ -54,7 +54,7 @@ var createSolicitud = function (req, res, next) {
                                         idCredito = 3;
                                     } else {
                                         message = "Crédito no aprobado: No tiene el salario mínimo requerido";
-                                        solicitud.aprovado = false;
+                                        solicitud.aprobado = false;
                                     }
                                 }
                             }
@@ -67,7 +67,7 @@ var createSolicitud = function (req, res, next) {
                             credito.findById(solicitud.idCredito).then(credito => {
                                 console.log(credito.toJSON());
                                 var respuesta = {
-                                    estado: solicitud.aprovado,
+                                    estado: solicitud.aprobado,
                                     valor: credito.valor,
                                     message: message
                                 }
