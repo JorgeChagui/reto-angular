@@ -3,13 +3,13 @@ var solicituds = require('../models').solicitud;
 var usuario = require('../models').usuario;
 var listarCredito = function (req, res, next) {
   
-  usuario.findById(req.body.usuario)
+  usuario.findById(req.params.id)
     
          solicituds.findAll({ 
      
             where: {
             aprobado: true,
-            usuarioId: req.body.usuario 
+            usuarioId: req.params.id
         }
         })
           .then(result => {
