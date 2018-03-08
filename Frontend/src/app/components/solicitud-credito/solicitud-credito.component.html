@@ -28,8 +28,8 @@
                   <div class="form-group">
 
                     <label for="name">*Nombre de la empresa: </label>
-                    <input [disabled]="disable" id="name" type="text" class="form-control" [(ngModel)]="empresa.nombre" name="nombre" #nombreEmpresaNg="ngModel" required
-                      minlength="3">
+                    <input [disabled]="disable" id="name" type="text" class="form-control" [(ngModel)]="empresa.nombre" name="nombre" #nombreEmpresaNg="ngModel"
+                      required minlength="3">
                     <span *ngIf="!nombreEmpresaNg.valid && nombreEmpresaNg.touched">
                       <div [hidden]="!nombreEmpresaNg.errors.minlength">Mínimo 2 caracteres</div>
                       <div [hidden]="!nombreEmpresaNg.errors.required">Obligatorio</div>
@@ -44,24 +44,22 @@
                       <option value="1">Natural</option>
                       <option value="2">Jurídica</option>
                     </select>
-                    
+
                     <div *ngIf="NitOptionNg.value=='1'">
-                      <input [disabled]="disable" id="nit" type="text" class="form-control" [(ngModel)]="empresa.nit" name="nit" #nitNg="ngModel" pattern="[0-9]*" required>
+                      <input [disabled]="disable" id="nit" type="text" class="form-control" [(ngModel)]="empresa.nit" name="nit" #nitNg="ngModel"
+                        pattern="[0-9]*" required>
                     </div>
-
-
-
-
                     <div *ngIf="NitOptionNg.value=='2'">
-                      <input [disabled]="disable" [textMask]="{mask: mask}" id="nit" type="text" class="form-control" placeholder="xxx.xxx.xxx-y" [(ngModel)]="empresa.nit" name="nit" #nitNg="ngModel" pattern="[0-9.-]*" required>
+                      <input [disabled]="disable" [textMask]="{mask: mask}" id="nit" type="text" class="form-control" placeholder="xxx.xxx.xxx-y"
+                        [(ngModel)]="empresa.nit" name="nit" #nitNg="ngModel" pattern="[0-9.-]*" required>
                     </div>
-                  </div>                  
                   </div>
+                </div>
                 <div class="col-sm-6">
                   <div class="form-group">
                     <label for="salario">*Salario Actual: </label>
-                    <input [disabled]="disable" id="salario" type="string" currencyMask class="form-control" maxlength="16" [(ngModel)]="solicitud.salario" name="salario"
-                      #SalarioNg="ngModel" required>
+                    <input [disabled]="disable" id="salario" type="string" currencyMask class="form-control" maxlength="16" [(ngModel)]="solicitud.salario"
+                      name="salario" #SalarioNg="ngModel" required>
                     <span *ngIf="!SalarioNg.valid && SalarioNg.touched">
                       <div [hidden]="!SalarioNg.errors.pattern">Campo incompleto</div>
                       <div [hidden]="!SalarioNg.errors.required">Obligatorio</div>
@@ -76,16 +74,15 @@
                   </div>
                 </div>
                 <div *ngIf="!show" class="col-sm-12 text-center">
-                    <button id="generar" type="submit" class="btn btn-template-outlined">
-                      <i class="fas fa-credit-card"></i> Generar</button>
-                  </div>
-                  <div *ngIf="show" class="col-sm-12 text-center">
-                      <button id="generar" type="submit" class="btn btn-template-outlined">
-                        <i class="fas fa-credit-card"></i> Listar</button>
-                        <button id="generar" type="submit" class="btn btn-template-outlined">
-                            <i class="fas fa-credit-card"></i> Solicitar</button>
-                    </div>
->>>>>>> master
+                  <button id="generar" type="submit" class="btn btn-template-outlined">
+                    <i class="fas fa-credit-card"></i> Generar</button>
+                </div>
+                <div *ngIf="show" class="col-sm-12 text-center">
+                  <button id="generar" type="submit" class="btn btn-template-outlined">
+                    <i class="fas fa-credit-card"></i> Listar</button>
+                  <button id="generar" type="submit" class="btn btn-template-outlined">
+                    <i class="fas fa-credit-card"></i> Solicitar</button>
+                </div>
               </div>
             </form>
           </div>
@@ -113,7 +110,8 @@
         <div *ngIf="respuesta?.estado">por: {{respuesta?.valor | currency}}</div>
       </div>
       <div class="modal-footer">
-        <button *ngIf="!disable" id="close" data-dismiss="modal" (click)="show = true" (click)="disable = true" type="button" (click)="terminar()" class="btn btn-template-main">Continuar
+        <button *ngIf="!disable" id="close" data-dismiss="modal" (click)="show = true" (click)="disable = true" type="button" (click)="terminar()"
+          class="btn btn-template-main">Continuar
           <i class="fas fa-arrow-circle-right icon"></i>
         </button>
       </div>
@@ -134,7 +132,7 @@
         <div>{{respuesta?.message}}</div>
       </div>
       <div class="modal-footer">
-        <button *ngIf="!disable" id="close2" data-dismiss="modal" (click)="disable = true" type="button" (click)="terminar2()" class="btn bottom">Continuar
+        <button *ngIf="!disable" id="close2" data-dismiss="modal" (click)="show = true" (click)="disable = true" type="button" (click)="terminar2()" class="btn bottom">Continuar
           <i class="fas fa-arrow-circle-right icon"></i>
         </button>
       </div>
