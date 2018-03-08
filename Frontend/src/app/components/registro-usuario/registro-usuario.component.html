@@ -36,7 +36,7 @@
                         <div [hidden]="!nombreNg.errors.minlength">Mínimo 3 caracteres</div>          
                         <div [hidden]="!nombreNg.errors.maxlength">Máximo 50 caracteres</div>          
                         <div [hidden]="!nombreNg.errors.required">Obligatorio</div>          
-                        <div [hidden]="!nombreNg.errors.pattern">Caracteres inválidos</div>          
+                        <div [hidden]="!nombreNg.errors.pattern">Solo letras</div>          
                     </span>
                     </div>
                   </div>
@@ -48,7 +48,7 @@
                           <div [hidden]="!primerApellidoNg.errors.minlength">Mínimo 3 caracteres</div>          
                           <div [hidden]="!primerApellidoNg.errors.maxlength">Máximo 50 caracteres</div>          
                           <div [hidden]="!primerApellidoNg.errors.required">Obligatorio</div>          
-                          <div [hidden]="!primerApellidoNg.errors.pattern">Caracteres inválidos</div>          
+                          <div [hidden]="!primerApellidoNg.errors.pattern">Solo letras</div>          
                       </span>
                     </div>
                   </div>
@@ -59,7 +59,7 @@
                       <span *ngIf="!segundoApellidoNg.valid && segundoApellidoNg.touched">
                           <div [hidden]="!segundoApellidoNg.errors.minlength">Mínimo 3 caracteres</div>          
                           <div [hidden]="!segundoApellidoNg.errors.maxlength">Máximo 50 caracteres</div>         
-                          <div [hidden]="!segundoApellidoNg.errors.pattern">Caracteres inválidos</div>          
+                          <div [hidden]="!segundoApellidoNg.errors.pattern">Solo letras</div>          
                       </span>
                     </div>
                   </div>
@@ -68,8 +68,6 @@
                       <label for="fechaNacimiento">*Fecha de Nacimiento</label>
                       <input id="fechaNacimiento" type="date" class="form-control" [(ngModel)]="usuario.fechaNacimiento" name="fechaNacimieto" #fechaNacimietoNg="ngModel" required min="01/01/1900" max="today" (change)="onChangeFecha()">
                       <span *ngIf="!fechaNacimietoNg.valid && fechaNacimietoNg.touched">
-                          <div [hidden]="!fechaNacimietoNg.errors.minlength">Mínimo 01/01/1900</div>      
-                          <div [hidden]="!fechaNacimietoNg.errors.maxlength">No tienes aún 18 años</div>          
                           <div [hidden]="!fechaNacimietoNg.errors.required">Obligatorio</div>
                       </span>
                     </div>
