@@ -12,7 +12,9 @@ import { Router } from '@angular/router';
 })
 export class SolicitudCreditoComponent implements OnInit {
   disable = false;
+  disable2 = false;
   show = false;
+  nitOption = '2';
   empresa: Empresa;
   solicitud: Solicitud;
   public errors: string[];
@@ -62,7 +64,8 @@ export class SolicitudCreditoComponent implements OnInit {
         this.respuesta = data;
         if (this.respuesta.estado === true) {
           document.getElementById('openModalApproved').click();
-        } else {
+        }
+        if (this.respuesta.estado === false) {
           document.getElementById('openModalDisapproved').click();
         }
         // localStorage.clear();
@@ -85,5 +88,9 @@ export class SolicitudCreditoComponent implements OnInit {
     // localStorage.clear();
     // this.route.navigate(['/solicitud-credito']);
   }
+
+  // newSolicitud(){
+  //   this.solicitud = new
+  // }
 
 }
