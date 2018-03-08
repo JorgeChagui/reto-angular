@@ -70,11 +70,12 @@
                 <div class="col-sm-6">
                   <div class="form-group">
                     <label for="fechaNacimiento">*Fecha de Ingreso</label>
-                    <input [disabled]="disable" id="fechaNacimiento" type="date" min="01/03/1918" max="today" class="form-control" required [(ngModel)]="solicitud.fechaIngreso"
+                    <input [disabled]="disable" id="fechaNacimiento" type="date" min="01/03/1950" class="form-control" required [(ngModel)]="solicitud.fechaIngreso"
                       name="fechaIngreso" #FechaNg="ngModel" (change)="fechaToday()">
                     <span *ngIf="!FechaNg.valid && FechaNg.touched">
                       <div [hidden]="!FechaNg.errors.max">No puede ser mayor a hoy</div>
                       <div [hidden]="!FechaNg.errors.required">Obligatorio</div>
+                      <div [hidden]="!FechaNg.errors.min">Fecha muy antigua</div>
                     </span>
 
                   </div>

@@ -66,9 +66,10 @@
                   <div class="col-sm-6">
                     <div class="form-group">
                       <label for="fechaNacimiento">*Fecha de Nacimiento</label>
-                      <input id="fechaNacimiento" type="date" class="form-control" [(ngModel)]="usuario.fechaNacimiento" name="fechaNacimieto" #fechaNacimietoNg="ngModel" required min="01/01/1900" max="today" (change)="onChangeFecha()">
+                      <input id="fechaNacimiento" type="date" class="form-control" [(ngModel)]="usuario.fechaNacimiento" name="fechaNacimieto" #fechaNacimietoNg="ngModel" required min="01/01/1950" (change)="onChangeFecha()">
                       <span *ngIf="!fechaNacimietoNg.valid && fechaNacimietoNg.touched">
                           <div [hidden]="!fechaNacimietoNg.errors.required">Obligatorio</div>
+                          <div [hidden]="!fechaNacimietoNg.errors.min">La fecha es muy antigua</div> 
                       </span>
                     </div>
                   </div>
