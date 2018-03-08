@@ -12,11 +12,14 @@ import { Router } from '@angular/router';
 })
 export class SolicitudCreditoComponent implements OnInit {
   today:boolean;
+  disable = false;
+  show = false;
   empresa: Empresa;
   solicitud: Solicitud;
   public errors: string[];
   public mask = [/\d/, /\d/, /\d/, '.', /\d/, /\d/, /\d/, '.', /\d/, /\d/, /\d/, '-', /\d/];
   public respuesta;
+  // public disabled: boolean;
   constructor(private solicitudService: SolicitudService, private route: Router) {
     this.empresa = new Empresa();
     this.solicitud = new Solicitud();
@@ -34,7 +37,7 @@ export class SolicitudCreditoComponent implements OnInit {
     let salario = null;
 
     if (this.solicitud.salario) {
-      salario = this.solicitud.salario.toString().substr(0,this.solicitud.salario.toString().length-3).replace('$', '').replace(',', '');
+      salario = this.solicitud.salario.toString().substr(0, this.solicitud.salario.toString().length - 3).replace('$', '').replace(',', '');
     }
 
     if (this.empresa.nit) {
@@ -47,7 +50,7 @@ export class SolicitudCreditoComponent implements OnInit {
         nombre: this.empresa.nombre
       },
       solicitud: {
-        salario:salario,
+        salario: salario,
         fechaIngreso: this.solicitud.fechaIngreso
 
       }
@@ -58,7 +61,11 @@ export class SolicitudCreditoComponent implements OnInit {
       data => {
         console.log(data);
         this.respuesta = data;
-        document.getElementById('openModalButton').click();
+        if (this.respuesta.estado === true) {
+          document.getElementById('openModalApproved').click();
+        } else {
+          document.getElementById('openModalDisapproved').click();
+        }
         // localStorage.clear();
         // this.route.navigate(['/solicitud-credito']);
       },
@@ -69,9 +76,15 @@ export class SolicitudCreditoComponent implements OnInit {
 
   }
   terminar() {
-    document.getElementById('cerrar').click();
-    localStorage.clear();
-    this.route.navigate(['/home']);
+    document.getElementById('close').click();
+    // localStorage.clear();
+    // this.route.navigate(['/solicitud-credito']);
+  }
+
+  terminar2() {
+    document.getElementById('close2').click();
+    // localStorage.clear();
+    // this.route.navigate(['/solicitud-credito']);
   }
 
   fechaToday():  void  {

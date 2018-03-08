@@ -14,15 +14,15 @@
               <h4>Datos de la empresa donde labora</h4>
             </div>
           </div>
-
           <div class="col-md-8 mx-auto">
             <form (ngSubmit)="onSubmit()">
               <div class="row">
                 <div class="col-sm-6">
                   <div class="form-group">
+
                     <label for="name">*Nombre de la empresa: </label>
-                    <input id="name" type="text" class="form-control" [(ngModel)]="empresa.nombre" name="nombre" #nombreEmpresaNg="ngModel" required
-                      minlength="3">
+                    <input [disabled]="disable" id="name" type="text" class="form-control" [(ngModel)]="empresa.nombre" name="nombre" #nombreEmpresaNg="ngModel"
+                      required minlength="3">
                     <span *ngIf="!nombreEmpresaNg.valid && nombreEmpresaNg.touched">
                       <div [hidden]="!nombreEmpresaNg.errors.minlength">Mínimo 2 caracteres</div>
                       <div [hidden]="!nombreEmpresaNg.errors.required">Obligatorio</div>
@@ -31,12 +31,12 @@
                 </div>
                 <div class="col-sm-6">
                   <label for="nit">*Nit: </label>
-                  <select name="NitOption" id="NitOption" [(ngModel)]="NitOption" #NitOptionNg="ngModel" class="form-control">
+                  <select [disabled]="disable" name="NitOption" id="NitOption" [(ngModel)]="NitOption" #NitOptionNg="ngModel" class="form-control">
                     <option value="1">Natural</option>
                     <option value="2">Jurídica</option>
                   </select>
                   <div *ngIf="NitOptionNg.value=='1'">
-                    <input id="nit" type="text" class="form-control" [(ngModel)]="empresa.nit" name="nit" #nitNg="ngModel" pattern="[0-9]*" required
+                    <input [disabled]="disable" id="nit" type="text" class="form-control" [(ngModel)]="empresa.nit" name="nit" #nitNg="ngModel" pattern="[0-9]*" required
                       minlength="5" maxlength="10" pattern="[0-9]*">
                     <span *ngIf="!nitNg.valid && nitNg.touched">
                       <div [hidden]="!nitNg.errors.minlength">Mínimo 5 números</div>
@@ -46,7 +46,7 @@
                     </span>
                   </div>
                   <div *ngIf="NitOptionNg.value=='2'">
-                    <input [textMask]="{mask: mask}" id="nit" type="text" class="form-control" placeholder="xxx.xxx.xxx-y" [(ngModel)]="empresa.nit"
+                    <input [disabled]="disable" [textMask]="{mask: mask}" id="nit" type="text" class="form-control" placeholder="xxx.xxx.xxx-y" [(ngModel)]="empresa.nit"
                       name="nit" #nitNg="ngModel" pattern="[0-9.-]*" required>
                     <span *ngIf="!nitNg.valid && nitNg.touched">
                       <div [hidden]="!nitNg.errors.minlength">Mínimo 5 números</div>
@@ -59,8 +59,8 @@
                 <div class="col-sm-6">
                   <div class="form-group">
                     <label for="salario">*Salario Actual: </label>
-                    <input id="salario" type="string" currencyMask class="form-control" maxlength="16" [(ngModel)]="solicitud.salario" name="salario"
-                      #SalarioNg="ngModel" required>
+                    <input [disabled]="disable" id="salario" type="string" currencyMask class="form-control" maxlength="16" [(ngModel)]="solicitud.salario"
+                      name="salario" #SalarioNg="ngModel" required>
                     <span *ngIf="!SalarioNg.valid && SalarioNg.touched">
                       <div [hidden]="!SalarioNg.errors.pattern">Campo incompleto</div>
                       <div [hidden]="!SalarioNg.errors.required">Obligatorio</div>
@@ -70,17 +70,24 @@
                 <div class="col-sm-6">
                   <div class="form-group">
                     <label for="fechaNacimiento">*Fecha de Ingreso</label>
-                    <input id="fechaNacimiento" type="date" min="01/03/1918" max="today" class="form-control" required [(ngModel)]="solicitud.fechaIngreso"
+                    <input [disabled]="disable" id="fechaNacimiento" type="date" min="01/03/1918" max="today" class="form-control" required [(ngModel)]="solicitud.fechaIngreso"
                       name="fechaIngreso" #FechaNg="ngModel" (change)="fechaToday()">
                     <span *ngIf="!FechaNg.valid && FechaNg.touched">
                       <div [hidden]="!FechaNg.errors.max">No puede ser mayor a hoy</div>
                       <div [hidden]="!FechaNg.errors.required">Obligatorio</div>
                     </span>
+
                   </div>
                 </div>
-                <div class="col-sm-12 text-center">
+                <div *ngIf="!show" class="col-sm-12 text-center">
                   <button id="generar" type="submit" class="btn btn-template-outlined">
                     <i class="fas fa-credit-card"></i> Generar</button>
+                </div>
+                <div *ngIf="show" class="col-sm-12 text-center">
+                  <button id="generar" type="submit" class="btn btn-template-outlined">
+                    <i class="fas fa-credit-card"></i> Listar</button>
+                  <button id="generar" type="submit" class="btn btn-template-outlined">
+                    <i class="fas fa-credit-card"></i> Solicitar</button>
                 </div>
               </div>
             </form>
@@ -89,30 +96,51 @@
       </section>
 
       <!-- Formulario -->
+      <button id="openModalApproved" [hidden]="true" data-toggle="modal" data-target="#ModalApproved">Open Modal</button>
+      <button id="openModalDisapproved" [hidden]="true" data-toggle="modal" data-target="#ModalDisapproved">Open Modal</button>
+    </div>
+  </div>
+</div>
 
-      <button id="openModalButton" [hidden]="true" data-toggle="modal" data-target="#myModal">Open Modal</button>
+<!-- Modal Approved-->
+<div class="modal fade" id="ModalApproved" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header color-modal-approved">
+        <h5 class="modal-title" id="exampleModalLabel">SOLICITUD CRÉDITO</h5>
+      </div>
+      <div class="modal-body" align="center">
+        <i class="fas fa-thumbs-up fa-5x iconModal" style="color:  #4fbfa8"></i>
+        <div>{{respuesta?.message}}</div>
+        <div *ngIf="respuesta?.estado">por: {{respuesta?.valor | currency}}</div>
+      </div>
+      <div class="modal-footer">
+        <button *ngIf="!disable" id="close" data-dismiss="modal" (click)="show = true" (click)="disable = true" type="button" (click)="terminar()"
+          class="btn btn-template-main">Continuar
+          <i class="fas fa-arrow-circle-right icon"></i>
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
 
-      <!-- Modal -->
-      <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h5 class="modal-title" id="exampleModalLabel">Solicitud Crédito</h5>
-              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-              </button>
-            </div>
-            <div class="modal-body">
-              <div>{{respuesta?.message}}</div>
-
-              <div *ngIf="respuesta?.estado">por {{respuesta?.valor | currency}}</div>
-            </div>
-            <div class="modal-footer">
-              <button type="button" class="btn btn-secondary" data-dismiss="modal" id="cerrar">Cerrar</button>
-              <button type="button" (click)="terminar()" class="btn btn-primary">Terminar Sesión</button>
-            </div>
-          </div>
-        </div>
+<!-- Modal Disapproved-->
+<div class="modal fade" id="ModalDisapproved" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header color-modal-disapproved">
+        <h5 class="modal-title" id="exampleModalLabel">SOLICITUD CRÉDITO</h5>
+      </div>
+      <div class="modal-body" align="center">
+        <i class="fas fa-thumbs-down fa-5x iconModal" style="color: #b04057"></i>
+        <div>{{respuesta?.message}}</div>
+      </div>
+      <div class="modal-footer">
+        <button *ngIf="!disable" id="close2" data-dismiss="modal" (click)="show = true" (click)="disable = true" type="button" (click)="terminar2()" class="btn bottom">Continuar
+          <i class="fas fa-arrow-circle-right icon"></i>
+        </button>
       </div>
     </div>
   </div>

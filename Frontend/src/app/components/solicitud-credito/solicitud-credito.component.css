@@ -2,3 +2,30 @@ span{
     color:red;
     font-size: 10px;
 }
+
+.iconModal{
+    margin-bottom: 25px;
+}
+
+.color-modal-approved{
+    color: white;
+    background-color: #4fbfa8;
+    /* opacity: 0.7; */
+}
+
+.color-modal-disapproved{
+    color: white;
+    background-color: #b04057;
+}
+
+.icon{
+    margin-left: 10px;
+}
+
+.bottom{
+    background: none;
+    color: #b04057;
+    border: 1px solid #b04057;
+    border-radius: 0;
+>>>>>>> master
+}
