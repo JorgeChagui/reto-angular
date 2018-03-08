@@ -11,6 +11,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./solicitud-credito.component.css']
 })
 export class SolicitudCreditoComponent implements OnInit {
+  today:boolean;
   disable = false;
   disable2 = false;
   show = false;
@@ -89,8 +90,13 @@ export class SolicitudCreditoComponent implements OnInit {
     // this.route.navigate(['/solicitud-credito']);
   }
 
-  // newSolicitud(){
-  //   this.solicitud = new
-  // }
+  fechaToday():  void  {
+    const  fechaNacimiento:  Date  =  new  Date(this.solicitud.fechaIngreso);
+    // tslint:disable-next-line:max-line-length
+    this.today  =  (new  Date(((new  Date().getFullYear())  +  '/'  +  (new  Date().getMonth() + 1)  +  '/'  +  new  Date().getDate()))  >  fechaNacimiento);
 
+    if  (!this.today) {
+      this.solicitud.fechaIngreso  =  null;
+    }
+  }
 }
