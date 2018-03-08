@@ -3,7 +3,11 @@ module.exports = {
         username: "solicitarcredito3",
         password: "123",
         database: "SOLICITARCREDITO2",
+<<<<<<< HEAD
         host: "localhost",
+=======
+        host: "192.168.3.109",
+>>>>>>> master
         dialect: "mssql",
         pool: {
             max: 5,

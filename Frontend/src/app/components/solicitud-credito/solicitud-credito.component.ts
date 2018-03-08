@@ -11,6 +11,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./solicitud-credito.component.css']
 })
 export class SolicitudCreditoComponent implements OnInit {
+  today:boolean;
   disable = false;
   show = false;
   empresa: Empresa;
@@ -86,4 +87,12 @@ export class SolicitudCreditoComponent implements OnInit {
     // this.route.navigate(['/solicitud-credito']);
   }
 
+  fechaToday():  void  {
+    let  fechaNacimiento:  Date  =  new  Date(this.solicitud.fechaIngreso);
+    this.today  =  (new  Date(((new  Date().getFullYear())  +  "/"  +  (new  Date().getMonth()+1)  +  "/"  +  new  Date().getDate()))  >  fechaNacimiento)
+
+    if  (!this.today) {
+      this.solicitud.fechaIngreso  =  null;
+    }
+  }
 }
