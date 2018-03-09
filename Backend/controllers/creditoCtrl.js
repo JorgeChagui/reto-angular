@@ -8,6 +8,7 @@ var listarCredito = function (req, res, next) {
          solicituds.findAll({ 
      
             where: {
+              
             aprobado: true,
             usuarioId: req.params.id
         }
@@ -21,7 +22,28 @@ var listarCredito = function (req, res, next) {
     
     
 };
+var Valor = function (req, res, next) {
+  
+  usuario.findById(req.params.id)
+    
+         credito.findAll({ 
+        })
+          .then(result => {
+           res.send(result);
+           }).catch(error => {
+      res.status(404).send({ message: "Usuario no encontrado" });
+  })
+    
+    
+    
+};
 
-module.exports.listarCredito = listarCredito;
+module.exports= {
+  
+  listarCredito: listarCredito,
+  Valor: Valor
+
+}
+
 
 

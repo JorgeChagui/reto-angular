@@ -33,6 +33,7 @@ export class SolicitudCreditoComponent implements OnInit {
     let salario = null;
 
     if (this.solicitud.salario) {
+      console.log(this.solicitud.salario.toString()+"jajaja");
       salario = this.solicitud.salario.toString().substr(0,this.solicitud.salario.toString().length-3).replace('$', '').replace(',', '');
     }
 
