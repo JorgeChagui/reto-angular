@@ -13,11 +13,15 @@ const httpOptions = {
 export class UsuariosService {
   private userUrl = 'http://localhost:3000/usuarios';
   public identidad;
+  public usuario1: Usuario
   constructor(private http: HttpClient) {
 
   }
   public postUsuarios (usuario: Usuario) {
     return this.http.post<Usuario>(this.userUrl, usuario, httpOptions);
+  }
+  public getUsuario (ccUser: string) {
+    return this.http.get<Usuario>(this.userUrl+'/'+ccUser, httpOptions);
   }
 
   public getIdentidad() {

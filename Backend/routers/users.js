@@ -6,6 +6,7 @@ console.log("Users Router");
 
 router.post('/', usuarioCtrl.createUser);
 router.get("/", usuarioCtrl.findAll);
+router.get("/:cedula", usuarioCtrl.findByCedula);
 router.post("/:id", usuarioCtrl.findById);
 
 module.exports = router;

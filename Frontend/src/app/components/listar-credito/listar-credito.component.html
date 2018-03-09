@@ -21,9 +21,10 @@
                 
                 <tr *ngFor="let sol of solicitudes">
                   <td style="text-align: center">{{sol.id}}</td>
-                  <td style="text-align: center">{{sol.createdAt.toString().substr(0,10)}}</td>
-                  <td style="text-align: center">{{sol.idCredito}}</td>
-                  <td style="text-align: center">{{sol.salario}}</td>
+                  <td style="text-align: center">{{sol.createdAt.toString().substr(0,10) | date}}</td>
+                  <td style="text-align: center">$ {{sol.idCredito | thousandsPipe}}</td>
+                  <td style="text-align: center">$ {{sol.salario  | thousandsPipe}}</td>
+                  <td style="text-align: center">{{sol.fechaIngreso.toString().substr(0,10) | date}}</td>
                   
                   
                 </tr>

@@ -5,6 +5,25 @@ import { ListarCreditoService } from '../../services/listarCredito/listar-credit
 import { validateConfig } from '@angular/router/src/config';
 import { Usuario } from '../../models/usuario.model';
 import { Credito } from '../../models/credito.model';
+
+import { Pipe, PipeTransform } from '@angular/core';
+
+    @Pipe({
+        name: 'thousandsPipe'
+    })
+
+export class ThousandsPipe implements PipeTransform {
+
+    public transform(value: any) {
+        return value.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");;
+    }
+}
+
+
+
+
+
+
 @Component({
 
   selector: 'app-listar-credito',
@@ -57,6 +76,53 @@ export class ListarCreditoComponent implements OnInit {
   
   
   }
+
+  
+/**
+* Función para poner puntos
+* ejemplo @param valor recibe 1000000 retorna 10,000.00
+*/
+ponerPuntos(valor: string): string {
+valor += ""; //convierte en string todo dato que entre
+let con = 0;
+let numFinal: string = "";
+let ban: boolean = false;
+if (valor.length <= 2) {
+return valor;
+} else {
+//voltea el string 
+valor = valor.split("").reverse().join("");
+//recorro el string 
+for (let num of valor) {
+if (ban) {
+if (con == 4) {
+if (num == ",") {
+con -= 1;
+} else {
+numFinal += ",";
+con = 1;
+}
+}
+} else {
+if (con == 2) {
+if (num == ".") {
+con -= 1;
+} else {
+numFinal += ".";
+con = 1;
+ban = true;
+}
+}
+}
+con += 1;
+numFinal += num;
+}
+}
+numFinal = numFinal.split("").reverse().join("");
+return numFinal;
+} 
+ 
+
   
   
 
