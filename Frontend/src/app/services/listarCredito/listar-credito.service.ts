@@ -17,6 +17,7 @@ export class ListarCreditoService {
 
   constructor(private http: HttpClient) {
   }
+  
 
   public getSolicitudes (idUser: string) {
     return this.http.get<Solicitud[]>(this.userUrl+'/'+idUser, httpOptions);
