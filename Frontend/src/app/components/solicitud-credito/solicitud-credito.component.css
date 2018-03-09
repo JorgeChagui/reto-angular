@@ -1,6 +1,6 @@
 span{
     color:red;
-    font-size: 10px;
+    font-size: 12px;
 }
 
 .iconModal{
@@ -27,4 +27,18 @@ span{
     color: #b04057;
     border: 1px solid #b04057;
     border-radius: 0;
+}
+
+.sizeLetter{
+    font-size: 90%
+}
+
+.btn2{
+    margin-top: 20px;
+    margin-left: 80%;
+}
+
+.btnGroup{
+    margin-top: 20px;
+    margin-left: 67%;
 }

@@ -13,7 +13,9 @@ import { Router } from '@angular/router';
 export class SolicitudCreditoComponent implements OnInit {
   today:boolean;
   disable = false;
+  disable2 = false;
   show = false;
+  nitOption = '2';
   empresa: Empresa;
   solicitud: Solicitud;
   public errors: string[];
@@ -37,7 +39,7 @@ export class SolicitudCreditoComponent implements OnInit {
     let salario = null;
 
     if (this.solicitud.salario) {
-      salario = this.solicitud.salario.toString().substr(0, this.solicitud.salario.toString().length - 3).replace('$', '').replace(',', '');
+      salario = this.solicitud.salario.toString().replace('$', '').replace(',', '');
     }
 
     if (this.empresa.nit) {
@@ -63,7 +65,8 @@ export class SolicitudCreditoComponent implements OnInit {
         this.respuesta = data;
         if (this.respuesta.estado === true) {
           document.getElementById('openModalApproved').click();
-        } else {
+        }
+        if (this.respuesta.estado === false) {
           document.getElementById('openModalDisapproved').click();
         }
         // localStorage.clear();
@@ -88,11 +91,13 @@ export class SolicitudCreditoComponent implements OnInit {
   }
 
   fechaToday():  void  {
-    let  fechaNacimiento:  Date  =  new  Date(this.solicitud.fechaIngreso);
-    this.today  =  (new  Date(((new  Date().getFullYear())  +  "/"  +  (new  Date().getMonth()+1)  +  "/"  +  new  Date().getDate()))  >  fechaNacimiento)
+    const  fechaNacimiento:  Date  =  new  Date(this.solicitud.fechaIngreso);
+    // tslint:disable-next-line:max-line-length
+    this.today  =  (new  Date(((new  Date().getFullYear())  +  '/'  +  (new  Date().getMonth() + 1)  +  '/'  +  new  Date().getDate()))  >  fechaNacimiento);
 
     if  (!this.today) {
       this.solicitud.fechaIngreso  =  null;
     }
+
   }
 }

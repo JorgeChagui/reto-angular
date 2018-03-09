@@ -21,15 +21,18 @@ import { UsuariosService } from './services/usuarios/usuarios.service';
 import { SolicitudService } from './services/Solicitud/solicitud.service';
 import { ListarCreditoComponent } from './components/listar-credito/listar-credito.component';
 
+import { ListarCreditoService } from './services/listarCredito/listar-credito.service';
+
 @NgModule({
   declarations: [
     AppComponent,
     NabvarComponent,
+    ListarCreditoComponent,
     RegistroUsuarioComponent,
     HeadingComponent,
     HomeComponent,
-    SolicitudCreditoComponent,
-    ListarCreditoComponent
+    SolicitudCreditoComponent
+    
   ],
   imports: [
     BrowserModule,
@@ -40,7 +43,7 @@ import { ListarCreditoComponent } from './components/listar-credito/listar-credi
     CurrencyMaskModule
   ],
   providers: [UsuariosService,
-    SolicitudService],
+    SolicitudService, ListarCreditoService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
