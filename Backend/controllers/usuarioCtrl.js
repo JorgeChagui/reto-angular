@@ -35,9 +35,21 @@ var findById = function (req, res, next) {
       res.send(result);
     });
 }
+var findByCedula = function (req, res, next) {
+  User.findAll({ 
+     
+      where: {
+        cedula:req.params.cedula
+    }
+})
+    .then(result => {
+      res.send(result);
+    });
+}
 
 module.exports = {
   createUser: createUser,
   findAll: findAll,
-  findById: findById
+  findById: findById,
+  findByCedula: findByCedula
 }

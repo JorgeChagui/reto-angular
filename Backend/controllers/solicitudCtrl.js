@@ -74,6 +74,7 @@ var createSolicitud = function (req, res, next) {
                                 res.status(200).send(respuesta);
                                 solicitud.idCredito=credito.valor
                                 solicitud.save()
+                                
                             })
                         })
                     }).catch(error => {

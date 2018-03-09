@@ -32,12 +32,13 @@ export class RegistroUsuarioComponent implements OnInit {
       });
   }
 
-  onChangeFecha():  void  {
-    let  fechaNacimiento:  Date  =  new  Date(this.usuario.fechaNacimiento);
-    this.mayor18  =  (new  Date(((new  Date().getFullYear()  -  18)  +  "/"  +  (new  Date().getMonth()  +  1)  +  "/"  +  new  Date().getDate()))  >  fechaNacimiento)
+  onChangeFecha(): void {
+    const fechaNacimiento: Date = new Date(this.usuario.fechaNacimiento);
+    this.mayor18 = (new Date(((
+      new Date().getFullYear() - 18) + '/' + (new Date().getMonth() + 1) + '/' + new Date().getDate())) > fechaNacimiento);
 
-    if  (!this.mayor18) {
-      this.usuario.fechaNacimiento  =  null;
+    if (!this.mayor18) {
+      this.usuario.fechaNacimiento = null;
     }
   }
 }

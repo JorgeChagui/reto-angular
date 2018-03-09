@@ -11,11 +11,12 @@ import { Router } from '@angular/router';
   styleUrls: ['./solicitud-credito.component.css']
 })
 export class SolicitudCreditoComponent implements OnInit {
-  today:boolean;
+  today: boolean;
   disable = false;
   disable2 = false;
   show = false;
   nitOption = '2';
+  public usuario2;
   empresa: Empresa;
   solicitud: Solicitud;
   public errors: string[];
@@ -30,6 +31,7 @@ export class SolicitudCreditoComponent implements OnInit {
   ngOnInit() {
     if (localStorage.getItem('identidad')) {
       console.log('Registrado');
+      this.usuario2 = JSON.parse(localStorage.getItem('identidad'));
     } else {
       this.route.navigate(['/home']);
     }
@@ -39,7 +41,7 @@ export class SolicitudCreditoComponent implements OnInit {
     let salario = null;
 
     if (this.solicitud.salario) {
-      salario = this.solicitud.salario.toString().replace('$', '').replace(',', '');
+     salario = this.solicitud.salario.toString().replace('$', '').replace('.', '');
     }
 
     if (this.empresa.nit) {
@@ -99,5 +101,9 @@ export class SolicitudCreditoComponent implements OnInit {
       this.solicitud.fechaIngreso  =  null;
     }
 
+  }
+
+  listar() {
+    this.route.navigate(['/listar-credito']);
   }
 }
