@@ -1,8 +1,11 @@
-.cent{
-    margin-left: 120px;
-}
+/* .cent{
+    margin-left: 25%;
+} */
 .cooolor{
     background-color: #4fbfa8;
-    color: white;
-    
+    color: white;   
+}
+
+.btnGroup{
+    margin-left: 77%;
 }
