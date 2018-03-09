@@ -14,6 +14,7 @@ export class SolicitudCreditoComponent implements OnInit {
   today: boolean;
   disable = false;
   disable2 = false;
+  bandera= false;
   show = false;
   nitOption = '2';
   public usuario2;
@@ -84,6 +85,15 @@ export class SolicitudCreditoComponent implements OnInit {
     document.getElementById('close').click();
     // localStorage.clear();
     // this.route.navigate(['/solicitud-credito']);
+  }
+  valor() {
+      if(this.solicitud.salario>100000000){
+        this.bandera=true;
+        this.solicitud.salario=null;
+      }else{
+        this.bandera=false;
+      }
+    
   }
 
   terminar2() {

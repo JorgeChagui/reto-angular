@@ -19,8 +19,9 @@
                   <div class="col-sm-6">
                     <div class="form-group">
                       <label for="documentIdentification">*Documento de Identidad</label>
-                      <input id="documentIdentification" type="text" class="form-control" [(ngModel)]="usuario.cedula" name="cedula" #cedulaNg="ngModel" required minlength="5" maxlength="10" pattern="[0-9]*">
+                      <input id="documentIdentification" (blur)="buscarCedula()" type="text" class="form-control" [(ngModel)]="usuario.cedula" name="cedula" #cedulaNg="ngModel" required minlength="5" maxlength="10" pattern="[0-9]*">
                       <span *ngIf="!cedulaNg.valid && cedulaNg.touched">
+                        <div [hidden]="!hola">La cédula ya está registrada</div>          
                         <div [hidden]="!cedulaNg.errors.minlength">Mínimo 5 números</div>          
                         <div [hidden]="!cedulaNg.errors.maxlength">Máximo 10 números</div>          
                         <div [hidden]="!cedulaNg.errors.required">Obligatorio</div>          
@@ -68,8 +69,9 @@
                       <label for="fechaNacimiento">*Fecha de Nacimiento</label>
                       <input id="fechaNacimiento" type="date" class="form-control" [(ngModel)]="usuario.fechaNacimiento" name="fechaNacimieto" #fechaNacimietoNg="ngModel" required min="01/01/1950" (change)="onChangeFecha()">
                       <span *ngIf="!fechaNacimietoNg.valid && fechaNacimietoNg.touched">
-                          <div [hidden]="!fechaNacimietoNg.errors.required">Obligatorio</div>
+                          <div [hidden]="!fechaNacimietoNg.errors.required">Debe ser mayor de 18 años</div>
                           <div [hidden]="!fechaNacimietoNg.errors.min">La fecha es muy antigua</div> 
+                          
                       </span>
                     </div>
                   </div>

@@ -68,10 +68,11 @@
                 <div class="col-sm-6">
                   <div class="form-group">
                     <label for="salario">*Salario Actual: </label>
-                    <input [disabled]="disable" id="salario" type="string" currencyMask class="form-control" maxlength="13" [(ngModel)]="solicitud.salario" 
+                    <input [disabled]="disable" (blur)="valor()" id="salario" type="string" currencyMask class="form-control" maxlength="13" [(ngModel)]="solicitud.salario" 
                     name="salario" [options]="{ prefix: '$ ', thousands: '.', precision: '0' }" #SalarioNg="ngModel" required>
                     <span *ngIf="!SalarioNg.valid && SalarioNg.touched && !disable">
                       <div [hidden]="!SalarioNg.errors.pattern">Campo incompleto</div>
+                      <div [hidden]="!bandera">El salario no puede ser mayor a $ 100.000.000</div>
                       <div [hidden]="!SalarioNg.errors.required">Obligatorio</div>
                     </span>
                   </div>

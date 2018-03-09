@@ -11,6 +11,7 @@ import { Router } from '@angular/router';
 export class RegistroUsuarioComponent implements OnInit {
   usuario: Usuario;
   mayor18: boolean;
+  hola: boolean;
   public errors: string[];
   constructor(private usuariosService: UsuariosService, private route: Router) {
     this.usuario = new Usuario();
@@ -38,7 +39,29 @@ export class RegistroUsuarioComponent implements OnInit {
       new Date().getFullYear() - 18) + '/' + (new Date().getMonth() + 1) + '/' + new Date().getDate())) > fechaNacimiento);
 
     if (!this.mayor18) {
-      this.usuario.fechaNacimiento = null;
+     this.usuario.fechaNacimiento = null;
+      this.hola=true;
+    }else{
+      this.hola=false;
     }
+  }
+
+  buscarCedula(){
+    console.log(this.usuario.cedula);
+    this.usuariosService.getUsuario(this.usuario.cedula).subscribe(
+      dato=>{
+        if(dato[0]!= null){
+            if(dato[0].cedula==this.usuario.cedula){
+              this.usuario.cedula=null;
+              this.hola = true;
+           //   alert("la cedula ya esta registrada");
+            }
+        }else{
+          this.hola=false;
+        }
+        
+        
+      }
+    );
   }
 }
