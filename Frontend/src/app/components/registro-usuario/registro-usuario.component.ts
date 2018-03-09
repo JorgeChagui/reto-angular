@@ -40,4 +40,10 @@ export class RegistroUsuarioComponent implements OnInit {
       this.usuario.fechaNacimiento  =  null;
     }
   }
+  
+  onWriteCedula() {
+   
+   
+  }
+  
 }
