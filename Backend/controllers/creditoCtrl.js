@@ -5,15 +5,14 @@ var listarCredito = function (req, res, next) {
   
   usuario.findById(req.params.id)
     
-         solicituds.findAll({ 
+        solicituds.findAll({ 
      
             where: {
               
             aprobado: true,
             usuarioId: req.params.id
         }
-        })
-          .then(result => {
+        }).then(result => {
            res.send(result);
            }).catch(error => {
       res.status(404).send({ message: "Usuario no encontrado" });
